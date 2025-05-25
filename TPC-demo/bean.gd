@@ -1,9 +1,15 @@
 extends CharacterBody3D
-
+class_name BeanPlayer
 
 const SPEED = 5.0
-const JUMP_VELOCITY = 7.5
+const JUMP_VELOCITY = 24.5
 const SPRINT_MULTIPLIER = 0.75
+
+
+var trolley: Trolley
+var is_attached_to_trolley: bool = false
+var tw_trolley: Tween
+
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -13,15 +19,51 @@ func _process(delta: float) -> void:
 	if Vector2(velocity.x, velocity.z).length() != 0:
 		var angle: float = Vector2(velocity.x, velocity.z).angle_to(-Vector2(basis.z.x, basis.z.z))
 		angle += PI/2
-		$mesh.rotation.y = lerp_angle($mesh.rotation.y, angle, 5 * delta)
-		$coll2.rotation.y = $mesh.rotation.y - PI/2
+		#rotation.y = lerp_angle(rotation.y, angle, 5 * delta)
+		
+		%mesh.rotation.y = lerp_angle(%mesh.rotation.y, angle, 5 * delta)
+		%coll_climb_steps.rotation.y = %mesh.rotation.y - PI/2
+
+
+func attach_trolley(toggle: bool) -> void:
+	if toggle:
+		if tw_trolley:
+			tw_trolley.kill()
+		tw_trolley = create_tween()
+		trolley.set_deferred(&"freeze", true)
+		var target_tranform: Transform3D = %trolley_marker.global_transform
+		#target_tranform = target_tranform.scaled(%mesh.scale)
+		tw_trolley.set_ease(Tween.EASE_OUT)
+		tw_trolley.set_trans(Tween.TRANS_SPRING)
+		tw_trolley.tween_property(
+			trolley,
+			^"global_transform",
+			target_tranform,
+			0.5
+		)
+		
+		await tw_trolley.finished
+		trolley.set_deferred(&"freeze", false)
+	
+	is_attached_to_trolley = !is_attached_to_trolley
+	var trolley_path: String = %left_pin.get_path_to(trolley)
+	#%hinge_joint.set_deferred(&"node_b", trolley_path if toggle else "")
+	%left_pin.set_deferred(&"node_b", trolley_path if toggle else "")
+	%right_pin.set_deferred(&"node_b", trolley_path if toggle else "")
+	#%center_pin.set_deferred(&"node_b", trolley_path if toggle else "")
+	print("trolley is %sattached" % ["" if is_attached_to_trolley else "NOT "])
 
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-
+	
+	# don't move while taking the cart
+	if tw_trolley:
+		if tw_trolley.is_running():
+			return
+	
 	# Handle jump.
 	if Input.is_action_just_pressed(&"jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
@@ -45,7 +87,9 @@ func _physics_process(delta: float) -> void:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed(&"interact"):
-		%ThirdPersonCamera.apply_preset_shake(0)
+		attach_trolley(!is_attached_to_trolley)
+		
+		#%ThirdPersonCamera.apply_preset_shake(0)
 
 
 func _unhandled_input(event):
@@ -53,6 +97,6 @@ func _unhandled_input(event):
 		return
 	if event is InputEventMouseMotion:
 		rotate_y(-event.relative.x*0.001)
-		$mesh.rotate_y(event.relative.x*0.001)
+		%mesh.rotate_y(event.relative.x*0.001)
 	
 	%SprintParticles.emitting = Input.is_action_pressed(&"sprint") and velocity.length() > 0.0 and is_on_floor_only()
