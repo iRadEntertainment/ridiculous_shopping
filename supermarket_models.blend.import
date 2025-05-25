@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://0sxi78pvvi7n"
-path="res://.godot/imported/supermarket_entrance.blend-f1c91d4f08e6d83ac9c2eed0bb11bdb3.scn"
+path="res://.godot/imported/supermarket_models.blend-9d685cd2b11225acd4b698791a748f95.scn"
 
 [deps]
 
-source_file="res://supermarket_entrance.blend"
-dest_files=["res://.godot/imported/supermarket_entrance.blend-f1c91d4f08e6d83ac9c2eed0bb11bdb3.scn"]
+source_file="res://supermarket_models.blend"
+dest_files=["res://.godot/imported/supermarket_models.blend-9d685cd2b11225acd4b698791a748f95.scn"]
 
 [params]
 
