@@ -15,6 +15,10 @@ run/main_scene="uid://dp6ugdjmkshto"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Aud="*res://Singletons/Aud.tscn"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/road-generator/plugin.cfg", "res://addons/third-person-camera/plugin.cfg")
@@ -67,3 +71,8 @@ interact={
 
 3d/physics_engine="Jolt Physics"
 3d/default_gravity=19.6
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
