@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cfg8d47fx7d5h"]
+[gd_scene load_steps=3 format=3 uid="uid://cfg8d47fx7d5h"]
 
 [ext_resource type="Script" uid="uid://cl2s3sdopbphf" path="res://ui/main_menu.gd" id="1_b00nv"]
+[ext_resource type="Texture2D" uid="uid://cqot4w10l8nja" path="res://assets/wip/volume-Sheet.png" id="2_rn8js"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -35,6 +36,17 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "Quit"
 
+[node name="VolumeSprite" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(1078, 68)
+texture = ExtResource("2_rn8js")
+hframes = 4
+
+[node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+autostart = true
+
 [connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="VBoxContainer/Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="frame_changed" from="VolumeSprite" to="." method="_on_volume_sprite_frame_changed"]
