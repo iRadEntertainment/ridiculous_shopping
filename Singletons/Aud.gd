@@ -1,3 +1,4 @@
+# Aud.gd singleton
 extends Node
 
 const MASTER_BUS_INDEX := 0
