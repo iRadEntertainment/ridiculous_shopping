@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Dunkucchino"
-run/main_scene="uid://dp6ugdjmkshto"
+run/main_scene="uid://cfg8d47fx7d5h"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
