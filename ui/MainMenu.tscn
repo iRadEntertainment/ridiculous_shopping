@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cfg8d47fx7d5h"]
+[gd_scene load_steps=4 format=3 uid="uid://cfg8d47fx7d5h"]
 
 [ext_resource type="Script" uid="uid://cl2s3sdopbphf" path="res://ui/main_menu.gd" id="1_b00nv"]
+[ext_resource type="Theme" uid="uid://dfjqab3g6ptab" path="res://ui/dunkaccino.theme" id="1_nmrkx"]
 [ext_resource type="Texture2D" uid="uid://cqot4w10l8nja" path="res://assets/wip/volume-Sheet.png" id="2_rn8js"]
 
 [node name="MainMenu" type="Control"]
@@ -10,6 +11,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_nmrkx")
 script = ExtResource("1_b00nv")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
