@@ -7,7 +7,7 @@ func _ready() -> void:
 	%VolumeSprite.frame += 1
 
 func _on_start_pressed() -> void:
-	get_tree().change_scene_to_file("res://dunkaccino.tscn")
+	get_tree().change_scene_to_file("res://instances/dunkaccino.tscn")
 	
 func _on_options_pressed() -> void:
 	get_tree().change_scene_to_file("res://ui/Options.tscn")
