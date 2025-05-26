@@ -26,7 +26,6 @@ var game: GameScene
 var bean: BeanPlayer
 var trolley: Trolley
 
-var time_elapsed: float = 0.0
 var is_debug: bool = true
 
 var is_mouse_captured: bool:

@@ -13,12 +13,16 @@ var trolley: Trolley:
 var is_attached_to_trolley: bool = false
 var tw_trolley: Tween
 
+var can_input: bool = true
+
 
 func _ready() -> void:
 	pass
 
 
 func _process(delta: float) -> void:
+	if !can_input:
+		return
 	if Vector2(velocity.x, velocity.z).length() != 0:
 		var angle: float = Vector2(velocity.x, velocity.z).angle_to(-Vector2(basis.z.x, basis.z.z))
 		angle += PI/2
@@ -29,6 +33,8 @@ func _process(delta: float) -> void:
 
 
 func attach_trolley(toggle: bool) -> void:
+	if !can_input:
+		return
 	if toggle:
 		if tw_trolley:
 			tw_trolley.kill()
@@ -68,22 +74,23 @@ func _physics_process(delta: float) -> void:
 			return
 	
 	# Handle jump.
-	if Input.is_action_just_pressed(&"jump") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-		%sfx_yippie.stop()
-		%sfx_yippie.pitch_scale = randf_range(0.85, 1.1)
-		%sfx_yippie.play()
-
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var input_dir := Input.get_vector(&"left", &"right", &"forward", &"back")
-	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if direction:
-		velocity.x = direction.x * SPEED * (1.0 + SPRINT_MULTIPLIER * int(Input.is_action_pressed(&"sprint")))
-		velocity.z = direction.z * SPEED * (1.0 + SPRINT_MULTIPLIER * int(Input.is_action_pressed(&"sprint")))
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
+	if can_input:
+		if Input.is_action_just_pressed(&"jump") and is_on_floor():
+			velocity.y = JUMP_VELOCITY
+			%sfx_yippie.stop()
+			%sfx_yippie.pitch_scale = randf_range(0.85, 1.1)
+			%sfx_yippie.play()
+		
+		# Get the input direction and handle the movement/deceleration.
+		# As good practice, you should replace UI actions with custom gameplay actions.
+		var input_dir := Input.get_vector(&"left", &"right", &"forward", &"back")
+		var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+		if direction:
+			velocity.x = direction.x * SPEED * (1.0 + SPRINT_MULTIPLIER * int(Input.is_action_pressed(&"sprint")))
+			velocity.z = direction.z * SPEED * (1.0 + SPRINT_MULTIPLIER * int(Input.is_action_pressed(&"sprint")))
+		else:
+			velocity.x = move_toward(velocity.x, 0, SPEED)
+			velocity.z = move_toward(velocity.z, 0, SPEED)
 	
 	move_and_slide()
 
