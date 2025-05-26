@@ -1,18 +1,21 @@
 extends CharacterBody3D
 class_name BeanPlayer
 
+
 const SPEED = 5.0
 const JUMP_VELOCITY = 9.5
 const SPRINT_MULTIPLIER = 0.75
 
 
-var trolley: Trolley
+var trolley: Trolley:
+	get():
+		return Mng.trolley
 var is_attached_to_trolley: bool = false
 var tw_trolley: Tween
 
 
 func _ready() -> void:
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	pass
 
 
 func _process(delta: float) -> void:

@@ -1,15 +1,20 @@
 extends Node3D
+class_name GameScene
+
+@export var is_main_menu_background: bool = false
 
 
-var bean: BeanPlayer
-var trolley: Trolley
+signal challenge_started
+signal challenge_ended
 
 
 func _ready() -> void:
-	trolley = find_child("trolley")
-	bean = find_child("bean")
+	if is_main_menu_background:
+		return
 	
-	bean.trolley = trolley
+	Mng.game = self
+	Mng.trolley = find_child("trolley")
+	Mng.bean = find_child("bean")
 
 
 func _input(event: InputEvent) -> void:
@@ -17,8 +22,9 @@ func _input(event: InputEvent) -> void:
 		if event.is_released():
 			return
 		
-		if event.keycode == KEY_BACKSLASH:
-			if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
-				Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-			else:
-				Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		if Mng.is_debug:
+			if event.keycode == KEY_BACKSLASH:
+				if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+					Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+				else:
+					Input.mouse_mode = Input.MOUSE_MODE_CAPTURED

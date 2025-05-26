@@ -21,6 +21,8 @@ const PRODUCTS = [
 	Tiles.FREEZERS,
 ]
 
+
+@export var is_intro: bool = false
 @export_tool_button("DO IT!", "Button") var do_it: Callable = create_maze_3d
 @export var generate_roof: bool = true
 
