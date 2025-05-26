@@ -1,6 +1,8 @@
-[gd_scene load_steps=14 format=4 uid="uid://b43bu8pcv4ycs"]
+[gd_scene load_steps=16 format=4 uid="uid://b43bu8pcv4ycs"]
 
 [ext_resource type="Script" uid="uid://bilgnau4a5rju" path="res://instances/cash_register.gd" id="1_88crx"]
+[ext_resource type="AudioStream" uid="uid://bp5laf735abqm" path="res://assets/sfx/sfx-success.mp3" id="2_y2bwk"]
+[ext_resource type="AudioStream" uid="uid://bnblx148a4t2x" path="res://assets/sfx/sfx-access-denied.wav" id="3_rnhe5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7loa7"]
 resource_name = "rubber_dark_grey"
@@ -199,5 +201,13 @@ unique_name_in_owner = true
 transform = Transform3D(0.0742271, 0, 0, 0, 0.104369, 0, 0, 0, 0.174661, 0.800896, 1.22703, -0.308398)
 material_override = SubResource("StandardMaterial3D_88crx")
 mesh = SubResource("BoxMesh_02vfe")
+
+[node name="sfx_success" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_y2bwk")
+bus = &"sfx"
+
+[node name="sfx_denied" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_rnhe5")
+bus = &"sfx"
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

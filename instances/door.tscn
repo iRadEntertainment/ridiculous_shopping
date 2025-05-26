@@ -132,7 +132,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_t3jm8")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_furmh"]
-size = Vector3(5, 4.34336, 7)
+size = Vector3(6.03223, 4.34336, 7)
 
 [node name="door" type="Node3D"]
 script = ExtResource("1_vkyci")
@@ -161,28 +161,16 @@ skeleton = NodePath("")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.19102, 0)
 shape = SubResource("BoxShape3D_vkyci")
 
-[node name="Area3D_front" type="Area3D" parent="."]
+[node name="Area3D" type="Area3D" parent="."]
 collision_layer = 8
 collision_mask = 18
 monitorable = false
 
-[node name="coll_front" type="CollisionShape3D" parent="Area3D_front"]
+[node name="coll" type="CollisionShape3D" parent="Area3D"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.47648, 2.14849, -0.0117188)
 shape = SubResource("BoxShape3D_furmh")
+debug_color = Color(0.356886, 0, 0.130239, 0.756863)
 
-[node name="Area3D_back" type="Area3D" parent="."]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.0977821, 0, 0)
-collision_layer = 8
-collision_mask = 18
-monitorable = false
-
-[node name="coll_back" type="CollisionShape3D" parent="Area3D_back"]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.47648, 2.14849, -0.0117188)
-shape = SubResource("BoxShape3D_furmh")
-
-[connection signal="body_entered" from="Area3D_front" to="." method="_on_area_3d_front_body_entered"]
-[connection signal="body_exited" from="Area3D_front" to="." method="_on_area_3d_front_body_exited"]
-[connection signal="body_entered" from="Area3D_back" to="." method="_on_area_3d_back_body_entered"]
-[connection signal="body_exited" from="Area3D_back" to="." method="_on_area_3d_back_body_exited"]
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_front_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_front_body_exited"]

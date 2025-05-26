@@ -34,8 +34,10 @@ func check_item_in_cart() -> void:
 			continue
 		item.reparent(self)
 		item.set_deferred("freeze", true)
+		add_collision_exception_with(item)
 	#print("After: ", items_collected)
-	count_items()
+	if is_shopping_complete():
+		Mng.gui.animate_wave_label("You got everything! Go to the checkout!")
 	count_updated.emit()
 
 

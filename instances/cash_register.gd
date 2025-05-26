@@ -14,13 +14,22 @@ func _ready() -> void:
 
 
 func _on_area_3d_body_entered(_body: Node3D) -> void:
-	if Mng.trolley.is_shopping_complete():
+	var complete: bool = Mng.trolley.is_shopping_complete()
+	if complete:
 		flash(true)
 		Mng.entrance.lock_exit(false)
 		Mng.trolley.puff()
 		Mng.gui.animate_wave_label("And now GET OUT!", 0.4)
 	else:
 		flash(false)
+	var message: String
+	if complete:
+		message = "Good Job, now get out!"
+		$sfx_success.play()
+	else:
+		$sfx_denied.play()
+		message = "Did you forget to buy something?"
+	Mng.gui.animate_wave_label(message)
 
 
 func flash(is_success: bool) -> void:
@@ -34,6 +43,6 @@ func flash(is_success: bool) -> void:
 	tw_flash.set_trans(Tween.TRANS_EXPO)
 	tw_flash.set_loops(6)
 	tw_flash.tween_property(mat, ^"emission_energy_multiplier", 0.8, 0.1)
-	tw_flash.tween_property(mat, ^"emission_energy_multiplier", 6, 0.1)
+	tw_flash.tween_property(mat, ^"emission_energy_multiplier", 12, 0.1)
 	await tw_flash.finished
 	%cash_reg_light.hide()

@@ -3,6 +3,11 @@ extends Node
 
 
 const SEEDS = [
+	"Rema 1000",
+	"finisfine",
+	"earend",
+	"RyanKHawkins",
+	"gridpapergames",
 	"JustCovino",
 	"Seano4D",
 	"HypnoticK_Games",

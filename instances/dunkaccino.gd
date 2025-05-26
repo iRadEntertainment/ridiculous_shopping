@@ -15,9 +15,13 @@ signal challenge_ended
 
 
 var shopping_list = {
-	Item.Type.ANANAS: 1,
-	#Item.Type.BANANA: 3,
-	#Item.Type.DONUT: 1,
+	Item.Type.ANANAS: 2,
+	Item.Type.BANANA: 3,
+	Item.Type.WATERMELON: 1,
+	Item.Type.DONUT: 3,
+	#Item.Type.FROZEN_PIZZA: 1,
+	#Item.Type.FROZEN_FISH: 1,
+	#Item.Type.FROZEN_PEAS: 1,
 }
 
 
@@ -36,6 +40,13 @@ func setup_scene() -> void:
 		Mng.entrance.lock_entrance(false)
 		Mng.entrance.lock_exit(true)
 		super_market.create_all()
+		var rng := super_market.supermarket_data.rng
+		var rand_item = [
+			Item.Type.FROZEN_PIZZA,
+			Item.Type.FROZEN_FISH,
+			Item.Type.FROZEN_PEAS,
+		][rng.randi_range(0, 2)]
+		shopping_list[rand_item] = 1
 		await get_tree().process_frame
 		Mng.bean.move_to_marker(Mng.entrance.bean_spawn)
 		Mng.gui.animate_wave_label("Get to the %s Super Market!" % super_market.supermarket_data.maze_seed)

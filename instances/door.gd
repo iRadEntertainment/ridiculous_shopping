@@ -2,7 +2,7 @@ extends Node3D
 class_name Door
 
 
-@export var is_both_ways: bool = false
+@export var is_start_door: bool = false
 @export var autoclose_time: float = 3.0
 
 var is_locked: bool = false
@@ -22,14 +22,11 @@ func _ready() -> void:
 	
 	door_1_pos = %SlidingDoor1.position
 	door_2_pos = %SlidingDoor2.position
-	
-	%coll_back.set_deferred(&"disabled", !is_both_ways)
 
 
 func lock_door(val: bool) -> void:
 	_toggle_door(false)
-	%coll_front.set_deferred(&"disabled", val)
-	%coll_back.set_deferred(&"disabled", val and is_both_ways)
+	%coll.set_deferred(&"disabled", val)
 
 
 func _toggle_door(toggle_open: bool) -> void:
@@ -52,12 +49,14 @@ func _toggle_door(toggle_open: bool) -> void:
 
 
 func _on_area_3d_front_body_entered(_body: Node3D) -> void:
-	if !is_locked:
+	if is_locked:
+		return
+	if is_start_door:
+		if Mng.bean.is_attached_to_trolley:
+			_toggle_door(true)
+		else:
+			Mng.gui.animate_wave_label("Get the TROLLEY first!!!")
+	else:
 		_toggle_door(true)
-func _on_area_3d_back_body_entered(_body: Node3D) -> void:
-	if !is_locked and is_both_ways:
-		_toggle_door(true)
-func _on_area_3d_back_body_exited(_body: Node3D) -> void:
-	tmr.start()
 func _on_area_3d_front_body_exited(_body: Node3D) -> void:
 	tmr.start()
