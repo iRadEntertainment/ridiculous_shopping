@@ -255,16 +255,17 @@ func _check_raycast_interactibles() -> void:
 	
 	var obj = %pick_ray.get_collider()
 	is_aiming_trolley = obj is Trolley
-	if obj.get_parent() is ItemSpawner:
-		item_spawner = obj.get_parent()
-	else:
-		item_spawner = null
+	if is_instance_valid(obj):
+		if obj.get_parent() is ItemSpawner:
+			item_spawner = obj.get_parent()
+		else:
+			item_spawner = null
 	
-	if last_item != obj and last_item:
-		last_item.highlight(false)
-	if obj is Item:
-		last_item = obj
-		obj.highlight(true)
+		if last_item != obj and last_item:
+			last_item.highlight(false)
+		if obj is Item:
+			last_item = obj
+			obj.highlight(true)
 	
 
 
