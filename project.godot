@@ -17,11 +17,16 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+Data="*res://data.gd"
 Aud="*res://Singletons/Aud.tscn"
 
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/road-generator/plugin.cfg", "res://addons/third-person-camera/plugin.cfg")
+
+[gui]
+
+theme/custom_font="uid://dfayypvomp2fv"
 
 [input]
 
