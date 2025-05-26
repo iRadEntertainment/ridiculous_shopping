@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cl2s3sdopbphf" path="res://ui/main_menu.gd" id="1_b00nv"]
 [ext_resource type="Theme" uid="uid://dfjqab3g6ptab" path="res://ui/dunkaccino.theme" id="1_nmrkx"]
 [ext_resource type="Texture2D" uid="uid://cqot4w10l8nja" path="res://assets/wip/volume-Sheet.png" id="2_rn8js"]
-[ext_resource type="RichTextEffect" uid="uid://bocmvyi17khos" path="res://ui/text_effects/Jiggle.tres" id="3_8v85u"]
+[ext_resource type="RichTextEffect" uid="uid://bocmvyi17khos" path="res://ui/Jiggle.tres" id="3_8v85u"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -32,11 +32,14 @@ text = " "
 [node name="StartLabel" type="RichTextLabel" parent="VBoxContainer/Start"]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 14
+anchors_preset = 8
+anchor_left = 0.5
 anchor_top = 0.5
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 0.5
+offset_left = -53.0
 offset_top = -41.0
+offset_right = 53.0
 offset_bottom = 41.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -45,7 +48,6 @@ bbcode_enabled = true
 text = "[jiggle]Start[/jiggle]"
 fit_content = true
 autowrap_mode = 0
-horizontal_alignment = 1
 custom_effects = [ExtResource("3_8v85u")]
 
 [node name="Options" type="Button" parent="VBoxContainer"]
@@ -56,11 +58,14 @@ text = " "
 [node name="OptionsLabel" type="RichTextLabel" parent="VBoxContainer/Options"]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 14
+anchors_preset = 8
+anchor_left = 0.5
 anchor_top = 0.5
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 0.5
+offset_left = -73.5
 offset_top = -41.0
+offset_right = 73.5
 offset_bottom = 41.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -69,8 +74,6 @@ bbcode_enabled = true
 text = "[jiggle]Options[/jiggle]"
 fit_content = true
 autowrap_mode = 0
-horizontal_alignment = 1
-custom_effects = [ExtResource("3_8v85u")]
 
 [node name="Quit" type="Button" parent="VBoxContainer"]
 unique_name_in_owner = true
@@ -80,21 +83,20 @@ text = " "
 [node name="QuitLabel" type="RichTextLabel" parent="VBoxContainer/Quit"]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 14
+anchors_preset = 8
+anchor_left = 0.5
 anchor_top = 0.5
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 0.5
-offset_top = -41.0
-offset_bottom = 41.0
+offset_left = -0.5
+offset_right = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 bbcode_enabled = true
-text = "[jiggle]Quit[/jiggle]"
+text = "Quit"
 fit_content = true
 autowrap_mode = 0
-horizontal_alignment = 1
-custom_effects = [ExtResource("3_8v85u")]
 
 [node name="VolumeSprite" type="Sprite2D" parent="."]
 unique_name_in_owner = true

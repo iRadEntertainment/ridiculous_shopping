@@ -48,7 +48,8 @@ func create_maze_3d() -> void:
 			"bluefoxstudios432",
 			"SirAeron",
 			"robmblind",
-			"gingerc4t"
+			"gingerc4t",
+			"Nekoht20"
 		].pick_random()
 	)
 	var supermarket_data: SupermarketGenData = SupermarketGenData.from_maze_data(maze_data)

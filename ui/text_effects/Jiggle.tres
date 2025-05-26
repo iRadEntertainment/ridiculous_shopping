@@ -1,0 +1,7 @@
+[gd_resource type="RichTextEffect" load_steps=2 format=3 uid="uid://bocmvyi17khos"]
+
+[ext_resource type="Script" uid="uid://bvnem0hxu0tkl" path="res://ui/text_effects/jiggle.gd" id="1_ni6y7"]
+
+[resource]
+script = ExtResource("1_ni6y7")
+bbcode = "jiggle"
