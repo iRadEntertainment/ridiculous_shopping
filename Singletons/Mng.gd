@@ -25,6 +25,8 @@ const SEEDS = [
 var game: GameScene
 var bean: BeanPlayer
 var trolley: Trolley
+var entrance: SupermarketEntrance
+var gui: GUI
 
 var is_debug: bool = true
 

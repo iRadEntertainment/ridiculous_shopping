@@ -1,6 +1,8 @@
 class_name Options
 extends Node
 
+signal go_back
+
 func _ready() -> void:
 	self.process_mode = Node.PROCESS_MODE_ALWAYS
 	
@@ -12,4 +14,4 @@ func _on_volume_value_changed(value: float) -> void:
 	Aud.save_audio_settings()
 
 func _on_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://ui/MainMenu.tscn")
+	go_back.emit()

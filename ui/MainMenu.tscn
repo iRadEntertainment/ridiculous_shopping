@@ -1,11 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://cfg8d47fx7d5h"]
+[gd_scene load_steps=8 format=3 uid="uid://cfg8d47fx7d5h"]
 
 [ext_resource type="Script" uid="uid://cl2s3sdopbphf" path="res://ui/main_menu.gd" id="1_b00nv"]
 [ext_resource type="Theme" uid="uid://dfjqab3g6ptab" path="res://ui/dunkaccino.theme" id="1_nmrkx"]
 [ext_resource type="Texture2D" uid="uid://cqot4w10l8nja" path="res://assets/wip/volume-Sheet.png" id="2_rn8js"]
 [ext_resource type="RichTextEffect" uid="uid://bocmvyi17khos" path="res://ui/text_effects/Jiggle.tres" id="3_8v85u"]
 [ext_resource type="PackedScene" uid="uid://dp6ugdjmkshto" path="res://instances/dunkaccino.tscn" id="3_qo3sn"]
-[ext_resource type="PackedScene" uid="uid://d2regmawgl07k" path="res://ui/timer/Timer.tscn" id="5_x262b"]
+[ext_resource type="Texture2D" uid="uid://bi4r3wtm3jhnw" path="res://assets/game_logo.png" id="4_qo3sn"]
+[ext_resource type="PackedScene" uid="uid://c80joei511sl3" path="res://ui/Options.tscn" id="5_g5fyd"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -32,22 +33,58 @@ size = Vector2i(1152, 648)
 render_target_update_mode = 4
 
 [node name="dunkaccino" parent="SubViewportContainer/SubViewport" instance=ExtResource("3_qo3sn")]
+is_main_menu_background = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="cnt" type="CenterContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -61.0
+offset_bottom = -209.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="logo" type="TextureRect" parent="cnt"]
+custom_minimum_size = Vector2(900, 500)
+layout_mode = 2
+texture = ExtResource("4_qo3sn")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="panels" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 281.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Options" parent="panels" instance=ExtResource("5_g5fyd")]
+unique_name_in_owner = true
+layout_mode = 1
+offset_top = 0.0
+offset_bottom = 0.0
+
+[node name="menu_buttons" type="VBoxContainer" parent="panels"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 64.0
+offset_top = -29.0
+offset_right = -812.0
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="Start" type="Button" parent="VBoxContainer"]
-unique_name_in_owner = true
+[node name="btn_Start" type="Button" parent="panels/menu_buttons"]
 layout_mode = 2
 text = " "
 
-[node name="StartLabel" type="RichTextLabel" parent="VBoxContainer/Start"]
+[node name="StartLabel" type="RichTextLabel" parent="panels/menu_buttons/btn_Start"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 14
@@ -66,12 +103,11 @@ autowrap_mode = 0
 horizontal_alignment = 1
 custom_effects = [ExtResource("3_8v85u")]
 
-[node name="Options" type="Button" parent="VBoxContainer"]
-unique_name_in_owner = true
+[node name="btn_Options" type="Button" parent="panels/menu_buttons"]
 layout_mode = 2
 text = " "
 
-[node name="OptionsLabel" type="RichTextLabel" parent="VBoxContainer/Options"]
+[node name="OptionsLabel" type="RichTextLabel" parent="panels/menu_buttons/btn_Options"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 14
@@ -90,12 +126,11 @@ autowrap_mode = 0
 horizontal_alignment = 1
 custom_effects = [ExtResource("3_8v85u")]
 
-[node name="Quit" type="Button" parent="VBoxContainer"]
-unique_name_in_owner = true
+[node name="btn_Quit" type="Button" parent="panels/menu_buttons"]
 layout_mode = 2
 text = " "
 
-[node name="QuitLabel" type="RichTextLabel" parent="VBoxContainer/Quit"]
+[node name="QuitLabel" type="RichTextLabel" parent="panels/menu_buttons/btn_Quit"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 14
@@ -120,10 +155,7 @@ position = Vector2(1078, 68)
 texture = ExtResource("2_rn8js")
 hframes = 4
 
-[node name="Timer" parent="." instance=ExtResource("5_x262b")]
-unique_name_in_owner = true
-
-[connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="VBoxContainer/Options" to="." method="_on_options_pressed"]
-[connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="panels/menu_buttons/btn_Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="panels/menu_buttons/btn_Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="panels/menu_buttons/btn_Quit" to="." method="_on_quit_pressed"]
 [connection signal="frame_changed" from="VolumeSprite" to="." method="_on_volume_sprite_frame_changed"]

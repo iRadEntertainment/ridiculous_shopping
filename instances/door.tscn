@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://bj3dami5ftsyd"]
+[gd_scene load_steps=10 format=4 uid="uid://bj3dami5ftsyd"]
 
 [ext_resource type="Script" uid="uid://chlb7ggwbhk1r" path="res://instances/door.gd" id="1_vkyci"]
 
@@ -72,6 +72,9 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_et45k")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_vkyci"]
+size = Vector3(0.120117, 4.41196, 3.72168)
+
 [sub_resource type="ArrayMesh" id="ArrayMesh_t3jm8"]
 _surfaces = [{
 "aabb": AABB(-0.00591755, 0.212409, -1.65567, 0.0118365, 3.95018, 3.31133),
@@ -140,18 +143,31 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.85)
 mesh = SubResource("ArrayMesh_pm04c")
 skeleton = NodePath("")
 
+[node name="StaticBody3D" type="StaticBody3D" parent="SlidingDoor1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SlidingDoor1/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.19102, 0)
+shape = SubResource("BoxShape3D_vkyci")
+
 [node name="SlidingDoor2" type="MeshInstance3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.875)
 mesh = SubResource("ArrayMesh_ug1y8")
 skeleton = NodePath("")
 
+[node name="StaticBody3D2" type="StaticBody3D" parent="SlidingDoor2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SlidingDoor2/StaticBody3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.19102, 0)
+shape = SubResource("BoxShape3D_vkyci")
+
 [node name="Area3D_front" type="Area3D" parent="."]
 collision_layer = 8
 collision_mask = 18
 monitorable = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D_front"]
+[node name="coll_front" type="CollisionShape3D" parent="Area3D_front"]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.47648, 2.14849, -0.0117188)
 shape = SubResource("BoxShape3D_furmh")
 
@@ -161,7 +177,8 @@ collision_layer = 8
 collision_mask = 18
 monitorable = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D_back"]
+[node name="coll_back" type="CollisionShape3D" parent="Area3D_back"]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.47648, 2.14849, -0.0117188)
 shape = SubResource("BoxShape3D_furmh")
 

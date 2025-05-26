@@ -5,18 +5,23 @@ func _ready() -> void:
 	self.process_mode = Node.PROCESS_MODE_ALWAYS
 	Aud.play_main_theme_music()
 	%VolumeSprite.frame += 1
-	
-	%Timer.start_timer()
+	%Options.go_back.connect(go_main)
+	go_main()
+
+
+func go_main() -> void:
+	%Options.hide()
+	%menu_buttons.show()
+func go_option() -> void:
+	%Options.show()
+	%menu_buttons.hide()
+
 
 
 func _on_start_pressed() -> void:
-	get_tree().change_scene_to_file("res://instances/dunkaccino.tscn")
-	
-	
+	Mng.go_to_game_scene()
 func _on_options_pressed() -> void:
-	get_tree().change_scene_to_file("res://ui/Options.tscn")
-
-
+	go_option()
 func _on_quit_pressed() -> void:
 	get_tree().quit()
 

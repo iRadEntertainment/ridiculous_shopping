@@ -17,7 +17,7 @@ var can_input: bool = true
 
 
 func _ready() -> void:
-	pass
+	Mng.bean = self
 
 
 func _process(delta: float) -> void:
@@ -98,12 +98,12 @@ func _physics_process(delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed(&"interact"):
 		attach_trolley(!is_attached_to_trolley)
-		
-		#%ThirdPersonCamera.apply_preset_shake(0)
 
 
 func _unhandled_input(event):
 	if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
+		return
+	if !can_input:
 		return
 	if event is InputEventMouseMotion:
 		rotate_y(-event.relative.x*0.001)

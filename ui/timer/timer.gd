@@ -1,4 +1,6 @@
-extends Node
+extends PanelContainer
+class_name GameTimer
+
 
 @onready var timer_label = $TimerLabel
 
