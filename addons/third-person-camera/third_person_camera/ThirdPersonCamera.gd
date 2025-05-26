@@ -9,6 +9,7 @@ enum FOLLOW_TARGETS {
 
 var last_item: Item
 signal last_item_changed
+var item_spawner: ItemSpawner
 var is_pick_item: bool = false
 var is_aiming_trolley: bool = false
 
@@ -249,10 +250,15 @@ func _check_raycast_interactibles() -> void:
 		if last_item:
 			last_item.highlight(false)
 			last_item = null
+			item_spawner = null
 		return
 	
 	var obj = %pick_ray.get_collider()
 	is_aiming_trolley = obj is Trolley
+	if obj.get_parent() is ItemSpawner:
+		item_spawner = obj.get_parent()
+	else:
+		item_spawner = null
 	
 	if last_item != obj and last_item:
 		last_item.highlight(false)

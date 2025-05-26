@@ -1,0 +1,55 @@
+[gd_scene load_steps=5 format=3 uid="uid://21mkugdpe5e4"]
+
+[ext_resource type="Script" uid="uid://c3xs0vymk2xmv" path="res://instances/items/item.gd" id="1_lktsr"]
+[ext_resource type="Script" uid="uid://dr8764jglhiut" path="res://script/Interactible.gd" id="3_k7ptx"]
+[ext_resource type="PackedScene" uid="uid://bcagvcas41l0t" path="res://assets/meshes/props/frozenPizza.gltf" id="7_yg7ha"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_v43vw"]
+size = Vector3(0.523438, 0.696228, 0.205811)
+
+[node name="item_frozen_pizza" type="RigidBody3D"]
+collision_layer = 4
+collision_mask = 63
+continuous_cd = true
+linear_damp = 1.333
+angular_damp = 1.333
+script = ExtResource("1_lktsr")
+type = 5
+
+[node name="coll" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 1.06581e-14, 0, -1.06581e-14, 1, 0, 0, 0, 1, 0.00976563, 0.359512, 0.00012207)
+shape = SubResource("BoxShape3D_v43vw")
+
+[node name="Interactible" type="Node3D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3_k7ptx")
+metadata/_custom_type_script = "uid://dr8764jglhiut"
+
+[node name="frozenPizza" parent="." instance=ExtResource("7_yg7ha")]
+
+[node name="SpringBoneSimulator3D" type="SpringBoneSimulator3D" parent="frozenPizza/FrozenPizzaArmature/Skeleton3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.12537, 0)
+setting_count = 1
+settings/0/root_bone_name = "Bone"
+settings/0/root_bone = 0
+settings/0/end_bone_name = "Bone.002"
+settings/0/end_bone = 2
+settings/0/extend_end_bone = false
+settings/0/center_from = 0
+settings/0/individual_config = false
+settings/0/rotation_axis = 3
+settings/0/radius/value = 0.02
+settings/0/radius/damping_curve = null
+settings/0/stiffness/value = 1.0
+settings/0/stiffness/damping_curve = null
+settings/0/drag/value = 0.4
+settings/0/drag/damping_curve = null
+settings/0/gravity/value = 0.0
+settings/0/gravity/damping_curve = null
+settings/0/gravity/direction = Vector3(0, -1, 0)
+settings/0/enable_all_child_collisions = true
+settings/0/exclude_collision_count = 0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+
+[editable path="frozenPizza"]

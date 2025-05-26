@@ -1,22 +1,35 @@
-[gd_scene load_steps=4 format=3 uid="uid://dvsfmhlh22d24"]
+[gd_scene load_steps=5 format=3 uid="uid://r3cvk7xlks5s"]
 
-[ext_resource type="Script" uid="uid://dr8764jglhiut" path="res://script/Interactible.gd" id="1_1p0np"]
-[ext_resource type="PackedScene" uid="uid://16byxldnl5pg" path="res://assets/meshes/props/banana.gltf" id="2_rdrtt"]
+[ext_resource type="Script" uid="uid://dr8764jglhiut" path="res://script/Interactible.gd" id="1_f05v4"]
+[ext_resource type="Script" uid="uid://c3xs0vymk2xmv" path="res://instances/items/item.gd" id="1_jqmtq"]
+[ext_resource type="PackedScene" uid="uid://16byxldnl5pg" path="res://assets/meshes/props/banana.gltf" id="2_avyav"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5g0t2"]
-radius = 0.0760222
-height = 0.398195
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_avyav"]
+radius = 0.0707555
+height = 0.413824
 
 [node name="item_banana" type="RigidBody3D"]
-script = ExtResource("1_1p0np")
+collision_layer = 4
+collision_mask = 63
+continuous_cd = true
+linear_damp = 1.333
+angular_damp = 1.333
+script = ExtResource("1_jqmtq")
+type = 1
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
-shape = SubResource("CapsuleShape3D_5g0t2")
+[node name="coll" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0.00443958, -0.0386957)
+shape = SubResource("CapsuleShape3D_avyav")
 
-[node name="banana" parent="." instance=ExtResource("2_rdrtt")]
+[node name="Interactible" type="Node3D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("1_f05v4")
+metadata/_custom_type_script = "uid://dr8764jglhiut"
+
+[node name="banana" parent="." instance=ExtResource("2_avyav")]
 
 [node name="SpringBoneSimulator3D" type="SpringBoneSimulator3D" parent="banana/BananaArmature/Skeleton3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.12537, 0)
 setting_count = 1
 settings/0/root_bone_name = "Bone"
 settings/0/root_bone = 0
@@ -37,5 +50,7 @@ settings/0/gravity/damping_curve = null
 settings/0/gravity/direction = Vector3(0, -1, 0)
 settings/0/enable_all_child_collisions = true
 settings/0/exclude_collision_count = 0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 
 [editable path="banana"]

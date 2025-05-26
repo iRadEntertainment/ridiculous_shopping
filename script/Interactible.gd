@@ -31,7 +31,11 @@ func _ready() -> void:
 	
 	# load and apply next pass material for the highlight
 	next_pass_material = preload("res://assets/meshes/outline_next_pass.tres").duplicate(true)
-	mesh_instance.mesh.surface_get_material(0).next_pass = next_pass_material
+	var mat: StandardMaterial3D = mesh_instance.mesh.surface_get_material(0)
+	mat = mat.duplicate()
+	mat.next_pass = next_pass_material
+	mesh_instance.set_surface_override_material(0, mat)
+	#mesh_instance.mesh.surface_get_material(0).next_pass = next_pass_material
 	next_pass_material.set_shader_parameter("outline_color", Color.TRANSPARENT)
 
 

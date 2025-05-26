@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bs7w5vja4ypdh" path="res://assets/textures/plywood_diff_1k.jpg" id="2_q83s0"]
 [ext_resource type="Texture2D" uid="uid://cucutspurq5ty" path="res://assets/textures/brown_leather_albedo_1k.jpg" id="3_e0cvy"]
 [ext_resource type="Texture2D" uid="uid://du7ya1lgrsulm" path="res://assets/textures/brown_leather_nor_gl_1k.jpg" id="4_rn6m4"]
-[ext_resource type="Script" uid="uid://cu4ca44eb1qb0" path="res://instances/items/item_spawner.gd" id="5_e0cvy"]
+[ext_resource type="PackedScene" uid="uid://bqnbp6tt5jj32" path="res://instances/items/item_spawner.tscn" id="5_e0cvy"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ta66a"]
 resource_name = "plywood"
@@ -79,7 +79,7 @@ shadow_mesh = SubResource("ArrayMesh_twwr0")
 data = PackedVector3Array(-2, 0, -0.75, -2, 0.75, -2, -2, 1.25, -0.75, -2, 0, -0.75, -2, 0, -2, -2, 0.75, -2, -2, 0, -2, -0.25, 0.75, -2, -2, 0.75, -2, -2, 0, -2, -0.25, 0, -2, -0.25, 0.75, -2, -0.25, 0, -2, -0.25, 1.25, -0.75, -0.25, 0.75, -2, -0.25, 0, -2, -0.25, 0, -0.75, -0.25, 1.25, -0.75, -0.25, 0, -0.75, -2, 1.25, -0.75, -0.25, 1.25, -0.75, -0.25, 0, -0.75, -2, 0, -0.75, -2, 1.25, -0.75, -2, 0, -2, -0.25, 0, -0.75, -0.25, 0, -2, -2, 0, -2, -2, 0, -0.75, -0.25, 0, -0.75, -0.25, 0.75, -2, -2, 1.25, -0.75, -2, 0.75, -2, -0.25, 0.75, -2, -0.25, 1.25, -0.75, -2, 1.25, -0.75, 2, 0, -0.75, 2, 0.75, -2, 2, 0, -2, 2, 0, -0.75, 2, 1.25, -0.75, 2, 0.75, -2, 2, 0, -2, 0.25, 0.75, -2, 0.25, 0, -2, 2, 0, -2, 2, 0.75, -2, 0.25, 0.75, -2, 0.25, 0, -2, 0.25, 1.25, -0.75, 0.25, 0, -0.75, 0.25, 0, -2, 0.25, 0.75, -2, 0.25, 1.25, -0.75, 0.25, 0, -0.75, 2, 1.25, -0.75, 2, 0, -0.75, 0.25, 0, -0.75, 0.25, 1.25, -0.75, 2, 1.25, -0.75, 2, 0, -2, 0.25, 0, -0.75, 2, 0, -0.75, 2, 0, -2, 0.25, 0, -2, 0.25, 0, -0.75, 0.25, 0.75, -2, 2, 1.25, -0.75, 0.25, 1.25, -0.75, 0.25, 0.75, -2, 2, 0.75, -2, 2, 1.25, -0.75, -2, 0, 0.75, -2, 0.75, 2, -2, 0, 2, -2, 0, 0.75, -2, 1.25, 0.75, -2, 0.75, 2, -2, 0, 2, -0.25, 0.75, 2, -0.25, 0, 2, -2, 0, 2, -2, 0.75, 2, -0.25, 0.75, 2, -0.25, 0, 2, -0.25, 1.25, 0.75, -0.25, 0, 0.75, -0.25, 0, 2, -0.25, 0.75, 2, -0.25, 1.25, 0.75, -0.25, 0, 0.75, -2, 1.25, 0.75, -2, 0, 0.75, -0.25, 0, 0.75, -0.25, 1.25, 0.75, -2, 1.25, 0.75, -2, 0, 2, -0.25, 0, 0.75, -2, 0, 0.75, -2, 0, 2, -0.25, 0, 2, -0.25, 0, 0.75, -0.25, 0.75, 2, -2, 1.25, 0.75, -0.25, 1.25, 0.75, -0.25, 0.75, 2, -2, 0.75, 2, -2, 1.25, 0.75, 2, 0, 0.75, 2, 0.75, 2, 2, 1.25, 0.75, 2, 0, 0.75, 2, 0, 2, 2, 0.75, 2, 2, 0, 2, 0.25, 0.75, 2, 2, 0.75, 2, 2, 0, 2, 0.25, 0, 2, 0.25, 0.75, 2, 0.25, 0, 2, 0.25, 1.25, 0.75, 0.25, 0.75, 2, 0.25, 0, 2, 0.25, 0, 0.75, 0.25, 1.25, 0.75, 0.25, 0, 0.75, 2, 1.25, 0.75, 0.25, 1.25, 0.75, 0.25, 0, 0.75, 2, 0, 0.75, 2, 1.25, 0.75, 2, 0, 2, 0.25, 0, 0.75, 0.25, 0, 2, 2, 0, 2, 2, 0, 0.75, 0.25, 0, 0.75, 0.25, 0.75, 2, 2, 1.25, 0.75, 2, 0.75, 2, 0.25, 0.75, 2, 0.25, 1.25, 0.75, 2, 1.25, 0.75)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rn6m4"]
-size = Vector3(1, 0.206299, 1)
+size = Vector3(0.64624, 0.173828, 1)
 
 [node name="block_fresh_produce" type="Node3D"]
 script = ExtResource("1_8n4p6")
@@ -96,14 +96,91 @@ shape = SubResource("ConcavePolygonShape3D_wkd3w")
 [node name="spawners" type="Node3D" parent="."]
 unique_name_in_owner = true
 
-[node name="sp1" type="Node3D" parent="spawners"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.57855, 0.886552, 1.35973)
-script = ExtResource("5_e0cvy")
+[node name="sp1" parent="spawners" instance=ExtResource("5_e0cvy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.58634, 0.841492, 1.36347)
 
-[node name="trigger" type="StaticBody3D" parent="spawners/sp1"]
-collision_layer = 8
-collision_mask = 8
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="spawners/sp1/trigger"]
-transform = Transform3D(1, 0, 0, 0, 0.930296, -0.36681, 0, 0.36681, 0.930296, 0, 0.0909424, 0.0553818)
+[node name="coll" parent="spawners/sp1/trigger" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0.946193, -0.323604, 0, 0.323604, 0.946193, 0, 0.0839844, 0)
 shape = SubResource("BoxShape3D_rn6m4")
+
+[node name="spawn_pos" parent="spawners/sp1" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.258363, 0.527716)
+
+[node name="sp2" parent="spawners" instance=ExtResource("5_e0cvy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.700317, 0.841492, 1.36347)
+
+[node name="coll" parent="spawners/sp2/trigger" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0.946193, -0.323604, 0, 0.323604, 0.946193, 0, 0.0839844, 0)
+shape = SubResource("BoxShape3D_rn6m4")
+
+[node name="spawn_pos" parent="spawners/sp2" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.258363, 0.527716)
+
+[node name="sp3" parent="spawners" instance=ExtResource("5_e0cvy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.679238, 0.841492, 1.36347)
+
+[node name="coll" parent="spawners/sp3/trigger" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0.946193, -0.323604, 0, 0.323604, 0.946193, 0, 0.0839844, 0)
+shape = SubResource("BoxShape3D_rn6m4")
+
+[node name="spawn_pos" parent="spawners/sp3" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.258363, 0.527716)
+
+[node name="sp4" parent="spawners" instance=ExtResource("5_e0cvy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.56526, 0.841492, 1.36347)
+
+[node name="coll" parent="spawners/sp4/trigger" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0.946193, -0.323604, 0, 0.323604, 0.946193, 0, 0.0839844, 0)
+shape = SubResource("BoxShape3D_rn6m4")
+
+[node name="spawn_pos" parent="spawners/sp4" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.258363, 0.527716)
+
+[node name="sp5" parent="spawners" instance=ExtResource("5_e0cvy")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 1.56526, 0.841492, -1.3626)
+
+[node name="coll" parent="spawners/sp5/trigger" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0.946193, -0.323604, 0, 0.323604, 0.946193, 0, 0.0839844, 0)
+shape = SubResource("BoxShape3D_rn6m4")
+
+[node name="spawn_pos" parent="spawners/sp5" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.258363, 0.527716)
+
+[node name="sp6" parent="spawners" instance=ExtResource("5_e0cvy")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.679238, 0.841492, -1.3626)
+
+[node name="coll" parent="spawners/sp6/trigger" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0.946193, -0.323604, 0, 0.323604, 0.946193, 0, 0.0839844, 0)
+shape = SubResource("BoxShape3D_rn6m4")
+
+[node name="spawn_pos" parent="spawners/sp6" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.258363, 0.527716)
+
+[node name="sp7" parent="spawners" instance=ExtResource("5_e0cvy")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.700317, 0.841492, -1.3626)
+
+[node name="coll" parent="spawners/sp7/trigger" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0.946193, -0.323604, 0, 0.323604, 0.946193, 0, 0.0839844, 0)
+shape = SubResource("BoxShape3D_rn6m4")
+
+[node name="spawn_pos" parent="spawners/sp7" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.258363, 0.527716)
+
+[node name="sp8" parent="spawners" instance=ExtResource("5_e0cvy")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -1.58634, 0.841492, -1.3626)
+
+[node name="coll" parent="spawners/sp8/trigger" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0.946193, -0.323604, 0, 0.323604, 0.946193, 0, 0.0839844, 0)
+shape = SubResource("BoxShape3D_rn6m4")
+
+[node name="spawn_pos" parent="spawners/sp8" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.258363, 0.527716)
+
+[editable path="spawners/sp1"]
+[editable path="spawners/sp2"]
+[editable path="spawners/sp3"]
+[editable path="spawners/sp4"]
+[editable path="spawners/sp5"]
+[editable path="spawners/sp6"]
+[editable path="spawners/sp7"]
+[editable path="spawners/sp8"]

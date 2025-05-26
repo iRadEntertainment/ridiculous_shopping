@@ -1,4 +1,4 @@
-[gd_scene load_steps=83 format=4 uid="uid://btm3v4imw7a2"]
+[gd_scene load_steps=82 format=4 uid="uid://btm3v4imw7a2"]
 
 [ext_resource type="Script" uid="uid://c8unud51b5mh5" path="res://assets/SuperMarket.gd" id="1_867ve"]
 [ext_resource type="Texture2D" uid="uid://bql505wk1tcdb" path="res://assets/textures/granite_tile_diff_1k.jpg" id="2_6xqx2"]
@@ -12,7 +12,6 @@
 [ext_resource type="Texture2D" uid="uid://uci0i2bah87w" path="res://assets/textures/brick_wall_04_diff_1k.jpg" id="10_5a7oi"]
 [ext_resource type="Texture2D" uid="uid://8jh3w74e4nxv" path="res://assets/textures/brick_wall_04_nor_gl_1k.jpg" id="11_e77ww"]
 [ext_resource type="PackedScene" uid="uid://delwd1ndfw4np" path="res://instances/entrance.tscn" id="12_h1lue"]
-[ext_resource type="Script" uid="uid://c12v5wqt34ppt" path="res://instances/entrance.gd" id="13_h1lue"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6cke5"]
 albedo_texture = ExtResource("2_6xqx2")
@@ -930,6 +929,8 @@ data = {
 }
 metadata/_editor_floor_ = Vector3(0, 0, 0)
 
-[node name="entrance" type="Node3D" parent="." instance=ExtResource("12_h1lue")]
+[node name="blocks" type="Node3D" parent="."]
+unique_name_in_owner = true
+
+[node name="entrance" parent="." instance=ExtResource("12_h1lue")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 7.5, 0, 152.5)
-script = ExtResource("13_h1lue")

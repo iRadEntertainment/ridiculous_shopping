@@ -116,9 +116,8 @@ func _input(event: InputEvent) -> void:
 			attach_trolley(true)
 		elif Mng.cam.last_item:
 			Mng.cam.pick_item(true)
-		
-			
-	#attach_trolley(!is_attached_to_trolley)
+		elif Mng.cam.item_spawner:
+			Mng.cam.item_spawner.spawn()
 
 
 func _unhandled_input(event):

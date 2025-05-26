@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cl2s3sdopbphf" path="res://ui/main_menu.gd" id="1_b00nv"]
 [ext_resource type="Theme" uid="uid://dfjqab3g6ptab" path="res://ui/dunkaccino.theme" id="1_nmrkx"]
-[ext_resource type="Texture2D" uid="uid://cqot4w10l8nja" path="res://assets/wip/volume-Sheet.png" id="2_rn8js"]
+[ext_resource type="Texture2D" uid="uid://cqot4w10l8nja" path="res://ui/volume-Sheet.png" id="2_rn8js"]
 [ext_resource type="RichTextEffect" uid="uid://bocmvyi17khos" path="res://ui/text_effects/Jiggle.tres" id="3_8v85u"]
 [ext_resource type="PackedScene" uid="uid://dp6ugdjmkshto" path="res://instances/dunkaccino.tscn" id="3_qo3sn"]
 [ext_resource type="Texture2D" uid="uid://bi4r3wtm3jhnw" path="res://assets/game_logo.png" id="4_qo3sn"]

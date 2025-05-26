@@ -3,7 +3,7 @@ class_name GameScene
 
 @export var is_main_menu_background: bool = false
 @onready var items: Node3D = %items
-@onready var super_market: MazeScene = %SuperMarket
+@onready var super_market: Supermarket = %SuperMarket
 
 
 var time_elapsed: float = 0.0
@@ -50,7 +50,7 @@ func connect_signals() -> void:
 
 
 func start_challenge() -> void:
-	Mng.gui.animate_wave_label("Get all the products!" % super_market.supermarket_data.maze_seed)
+	Mng.gui.animate_wave_label("Get all the products!")
 	Mng.gui.toggle_shopping_list(true)
 	Mng.entrance.lock_entrance(true)
 	Mng.gui.toggle_timer(true)

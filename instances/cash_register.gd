@@ -1,11 +1,13 @@
 extends MeshInstance3D
 class_name CashRegister
 
+
 var mat: StandardMaterial3D:
 	get():
 		return %cash_reg_light.material_override
 
 var tw_flash: Tween
+
 
 func _ready() -> void:
 	%cash_reg_light.hide()
@@ -16,6 +18,7 @@ func _on_area_3d_body_entered(_body: Node3D) -> void:
 		flash(true)
 		Mng.entrance.lock_exit(false)
 		Mng.trolley.puff()
+		Mng.gui.animate_wave_label("And now GET OUT!", 0.4)
 	else:
 		flash(false)
 

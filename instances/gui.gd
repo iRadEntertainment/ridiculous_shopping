@@ -54,7 +54,7 @@ func update_shopping_list() -> void:
 	%shopping_list.text = text
 
 
-func animate_wave_label(text: String) -> void:
+func animate_wave_label(text: String, duration := 0.6) -> void:
 	%lb_wave_notification.show()
 	%lb_wave_notification.text = text
 	%lb_wave_notification.modulate.a = 0
@@ -65,11 +65,11 @@ func animate_wave_label(text: String) -> void:
 	tw.set_ease(Tween.EASE_OUT)
 	
 	#tw.tween_property(Engine, "time_scale", 0.2, 1.0)
-	tw.parallel().tween_property(%lb_wave_notification, "modulate:a", 1, 0.6)
-	tw.parallel().tween_property(%lb_wave_notification, "anchor_right", 1, 0.6)
+	tw.parallel().tween_property(%lb_wave_notification, "modulate:a", 1, duration)
+	tw.parallel().tween_property(%lb_wave_notification, "anchor_right", 1, duration)
 	tw.tween_interval(2.0)
 	
-	tw.tween_property(%lb_wave_notification, "modulate:a", 0, 0.6)
-	tw.parallel().tween_property(%lb_wave_notification, "anchor_left", 1, 0.6)
+	tw.tween_property(%lb_wave_notification, "modulate:a", 0, duration)
+	tw.parallel().tween_property(%lb_wave_notification, "anchor_left", 1, duration)
 	#tw.parallel().tween_property(Engine, "time_scale", 1.0, 1.0)
 	tw.tween_callback(%lb_wave_notification.hide)

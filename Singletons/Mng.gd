@@ -19,12 +19,16 @@ const SEEDS = [
 	"robmblind",
 	"gingerc4t",
 	"Nekoht20",
+	"forgetfulprogrammer1976",
+	"bluefoxstudio432",
+	"Brainoid",
 ]
 
 # Game variables
 var game: GameScene
 var bean: BeanPlayer
 var trolley: Trolley
+var super_market: Supermarket
 var entrance: SupermarketEntrance
 var gui: GUI
 var cam: ThirdPersonCamera

@@ -1,6 +1,6 @@
 @tool
 extends Node3D
-class_name MazeScene
+class_name Supermarket
 
 enum Tiles {
 	SINGLE_FLOOR,
@@ -14,12 +14,12 @@ enum Tiles {
 	ROOF_OPEN
 }
 
-const PRODUCTS = [
-	Tiles.BAKERY,
-	Tiles.FRESH_PRODUCE,
-	Tiles.FRIDGE_MILK,
-	Tiles.FREEZERS,
-]
+const PRODUCTS = {
+	Tiles.BAKERY: preload("res://instances/blocks/block_bakery.tscn"),
+	Tiles.FRESH_PRODUCE: preload("res://instances/blocks/block_fresh_produce.tscn"),
+	Tiles.FRIDGE_MILK: preload("res://instances/blocks/block_milk.tscn"),
+	Tiles.FREEZERS: preload("res://instances/blocks/block_freezer.tscn"),
+}
 
 
 @export var is_intro: bool = false
@@ -33,6 +33,7 @@ var entrance_scene: SupermarketEntrance
 
 
 func _ready() -> void:
+	Mng.super_market = self
 	entrance_scene = preload("res://instances/entrance.tscn").instantiate()
 	entrance_scene.rotation.y = PI
 
@@ -113,12 +114,29 @@ func create_maze_3d() -> void:
 				continue
 			else:
 				# supermarket shelves
-				%GridMap.set_cell_item(
-					pos_ground,
-					PRODUCTS[supermarket_data.rng.randi() % PRODUCTS.size()],
-					#1 if maze_data.rng.randf() > 0.5 else 2,
-					get_random_orient_idx(supermarket_data.rng)
-				)
+				var tile_type: int = PRODUCTS.keys()[supermarket_data.rng.randi() % PRODUCTS.size()]
+				var block_angle: float = [0.0, PI/2, PI, -PI/2][supermarket_data.rng.randi_range(0, 3)]
+				# placeholder only
+				if Engine.is_editor_hint() or Mng.game.is_main_menu_background:
+					%GridMap.set_cell_item(
+						pos_ground,
+						tile_type,
+						#1 if maze_data.rng.randf() > 0.5 else 2,
+						get_orthogonal_idx(block_angle)
+					)
+				# active elements for actual game
+				else:
+					var pos_block: Vector3 = Vector3(pos_ground)
+					pos_block *= 5.0
+					pos_block += Vector3(2.5, 0, 2.5)
+					var block: SupermarketBlock = PRODUCTS[tile_type].instantiate()
+					block.position = pos_block
+					block.rotation.y = block_angle
+					%blocks.add_child(block)
+	
+	if !Engine.is_editor_hint():
+		for block: SupermarketBlock in %blocks.get_children():
+			block.populate(supermarket_data.rng)
 
 
 func get_orthogonal_idx(angle: float) -> int:

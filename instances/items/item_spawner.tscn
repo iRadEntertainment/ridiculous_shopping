@@ -2,11 +2,14 @@
 
 [ext_resource type="Script" uid="uid://cu4ca44eb1qb0" path="res://instances/items/item_spawner.gd" id="1_5ck5n"]
 
-[node name="item_spawner" type="Node3D"]
+[node name="sp" type="Node3D"]
 script = ExtResource("1_5ck5n")
 
 [node name="trigger" type="StaticBody3D" parent="."]
 collision_layer = 8
 collision_mask = 8
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="trigger"]
+[node name="coll" type="CollisionShape3D" parent="trigger"]
+unique_name_in_owner = true
+
+[node name="spawn_pos" type="Marker3D" parent="."]
