@@ -1,0 +1,212 @@
+[gd_scene load_steps=17 format=3 uid="uid://di5x3doblh5q3"]
+
+[ext_resource type="Script" uid="uid://2m8bg130evxd" path="res://instances/bean.gd" id="1_7qwah"]
+[ext_resource type="PackedScene" uid="uid://dwaupf02snpf4" path="res://bean.blend" id="2_udjov"]
+[ext_resource type="PackedScene" uid="uid://wmf2eu0uuhrg" path="res://addons/third-person-camera/third_person_camera/ThirdPersonCamera.tscn" id="3_whphh"]
+[ext_resource type="AudioStream" uid="uid://dubv4cg3a8mk" path="res://assets/sfx/sfx-yippee.ogg" id="4_udjov"]
+
+[sub_resource type="Curve" id="Curve_udjov"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_o87c1"]
+radius = 0.233095
+height = 0.844967
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_udjov"]
+radius = 0.233095
+height = 0.616035
+
+[sub_resource type="Curve" id="Curve_7qwah"]
+_data = [Vector2(0, 0.275168), 0.0, 0.676113, 0, 0, Vector2(1, 0), -5.56975, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_udjov"]
+curve = SubResource("Curve_7qwah")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_whphh"]
+emission_shape = 3
+emission_box_extents = Vector3(0.2, 0, 0.2)
+direction = Vector3(0, 1, 0)
+initial_velocity_min = 0.5
+initial_velocity_max = 3.0
+gravity = Vector3(0, -2.94, 0)
+radial_accel_min = 0.999998
+radial_accel_max = 2.0
+damping_min = 0.1
+damping_max = 2.0
+scale_max = 4.0
+scale_curve = SubResource("CurveTexture_udjov")
+turbulence_enabled = true
+turbulence_noise_scale = 1.703
+
+[sub_resource type="Gradient" id="Gradient_btcmb"]
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_63i8a"]
+gradient = SubResource("Gradient_btcmb")
+fill_from = Vector2(0, 0.398649)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="Gradient" id="Gradient_scw2w"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_aqyjn"]
+gradient = SubResource("Gradient_scw2w")
+fill_to = Vector2(0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7vn8v"]
+transparency = 1
+diffuse_mode = 3
+albedo_texture = SubResource("GradientTexture2D_63i8a")
+rim_enabled = true
+rim = 0.75
+rim_tint = 0.44
+rim_texture = SubResource("GradientTexture2D_aqyjn")
+disable_receive_shadows = true
+billboard_keep_scale = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_gmf1s"]
+material = SubResource("StandardMaterial3D_7vn8v")
+radius = 0.05
+height = 0.025
+is_hemisphere = true
+
+[node name="bean" type="CharacterBody3D"]
+script = ExtResource("1_7qwah")
+
+[node name="marker_cam" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, -1.88294e-13, 0, 1, 0, 1.88294e-13, 0, 1, 0.269211, 0.659295, 0.10776)
+
+[node name="ThirdPersonCamera" parent="marker_cam" instance=ExtResource("3_whphh")]
+unique_name_in_owner = true
+visible = false
+distance_from_pivot = 2.0
+current = true
+follow_target = 2
+
+[node name="mesh" parent="." instance=ExtResource("2_udjov")]
+unique_name_in_owner = true
+transform = Transform3D(-1.09278e-08, 0, 0.25, 0, 0.25, 0, -0.25, 0, -1.09278e-08, 0, 0.42, 0)
+
+[node name="SpringBoneSimulator3D" type="SpringBoneSimulator3D" parent="mesh/Armature/Skeleton3D" index="1"]
+setting_count = 1
+settings/0/root_bone_name = "center"
+settings/0/root_bone = 0
+settings/0/end_bone_name = "spine3"
+settings/0/end_bone = 3
+settings/0/extend_end_bone = false
+settings/0/center_from = 0
+settings/0/individual_config = false
+settings/0/rotation_axis = 3
+settings/0/radius/value = 0.01
+settings/0/radius/damping_curve = null
+settings/0/stiffness/value = 20.0
+settings/0/stiffness/damping_curve = SubResource("Curve_udjov")
+settings/0/drag/value = 0.8
+settings/0/drag/damping_curve = null
+settings/0/gravity/value = 0.0
+settings/0/gravity/damping_curve = null
+settings/0/gravity/direction = Vector3(0, -1, 0)
+settings/0/enable_all_child_collisions = true
+settings/0/exclude_collision_count = 0
+
+[node name="SBSArms_R" type="SpringBoneSimulator3D" parent="mesh/Armature/Skeleton3D" index="2"]
+setting_count = 1
+settings/0/root_bone_name = "torso.R"
+settings/0/root_bone = 5
+settings/0/end_bone_name = "arm5.R"
+settings/0/end_bone = 10
+settings/0/extend_end_bone = false
+settings/0/center_from = 0
+settings/0/individual_config = false
+settings/0/rotation_axis = 3
+settings/0/radius/value = 0.01
+settings/0/radius/damping_curve = null
+settings/0/stiffness/value = 20.0
+settings/0/stiffness/damping_curve = SubResource("Curve_udjov")
+settings/0/drag/value = 0.8
+settings/0/drag/damping_curve = null
+settings/0/gravity/value = 0.0
+settings/0/gravity/damping_curve = null
+settings/0/gravity/direction = Vector3(0, -1, 0)
+settings/0/enable_all_child_collisions = true
+settings/0/exclude_collision_count = 0
+
+[node name="SBSArms_L" type="SpringBoneSimulator3D" parent="mesh/Armature/Skeleton3D" index="3"]
+setting_count = 1
+settings/0/root_bone_name = "torso.L"
+settings/0/root_bone = 11
+settings/0/end_bone_name = "arm5.L"
+settings/0/end_bone = 16
+settings/0/extend_end_bone = false
+settings/0/center_from = 0
+settings/0/individual_config = false
+settings/0/rotation_axis = 3
+settings/0/radius/value = 0.01
+settings/0/radius/damping_curve = null
+settings/0/stiffness/value = 20.0
+settings/0/stiffness/damping_curve = SubResource("Curve_udjov")
+settings/0/drag/value = 0.8
+settings/0/drag/damping_curve = null
+settings/0/gravity/value = 0.0
+settings/0/gravity/damping_curve = null
+settings/0/gravity/direction = Vector3(0, -1, 0)
+settings/0/enable_all_child_collisions = true
+settings/0/exclude_collision_count = 0
+
+[node name="trolley_static_dummy" type="StaticBody3D" parent="mesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 0)
+
+[node name="trolley_marker" type="Marker3D" parent="mesh/trolley_static_dummy"]
+unique_name_in_owner = true
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 3.32797, -1.66132, 0.000629459)
+
+[node name="left_pin" type="PinJoint3D" parent="mesh/trolley_static_dummy"]
+unique_name_in_owner = true
+transform = Transform3D(-1.74845e-07, 0, -4, 0, 4, 0, 4, 0, -1.74845e-07, 1.19209e-07, 2, -3.02608)
+node_a = NodePath("..")
+exclude_nodes_from_collision = false
+
+[node name="hinge_joint" type="HingeJoint3D" parent="mesh/trolley_static_dummy"]
+unique_name_in_owner = true
+transform = Transform3D(-4, 0, 3.4969e-07, 0, 4, 0, -3.4969e-07, 0, -4, 0.25329, 1.46296, 1.10716e-08)
+node_a = NodePath("..")
+exclude_nodes_from_collision = false
+angular_limit/upper = 0.314159
+angular_limit/lower = -2.07345
+
+[node name="right_pin" type="PinJoint3D" parent="mesh/trolley_static_dummy"]
+unique_name_in_owner = true
+transform = Transform3D(-1.74845e-07, 0, -4, 0, 4, 0, 4, 0, -1.74845e-07, -1.19209e-07, 2, 2.55558)
+node_a = NodePath("..")
+exclude_nodes_from_collision = false
+
+[node name="center_pin" type="PinJoint3D" parent="mesh/trolley_static_dummy"]
+unique_name_in_owner = true
+transform = Transform3D(-1.74845e-07, 0, -4, 0, 4, 0, 4, 0, -1.74845e-07, 5.29718, 0.273573, 2.31546e-07)
+node_a = NodePath("..")
+exclude_nodes_from_collision = false
+
+[node name="coll" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.417074, 0)
+shape = SubResource("CapsuleShape3D_o87c1")
+
+[node name="coll_climb_steps" type="CollisionShape3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, -4.37114e-08, -1.91069e-15, 0, -4.37114e-08, 1, -4.37114e-08, -1, -4.37114e-08, 0, 0.27139, 0)
+shape = SubResource("CapsuleShape3D_udjov")
+
+[node name="SprintParticles" type="GPUParticles3D" parent="."]
+unique_name_in_owner = true
+emitting = false
+amount = 50
+collision_base_size = 0.05
+process_material = SubResource("ParticleProcessMaterial_whphh")
+draw_pass_1 = SubResource("SphereMesh_gmf1s")
+
+[node name="sfx_yippie" type="AudioStreamPlayer3D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("4_udjov")
+bus = &"sfx"
+
+[editable path="mesh"]
