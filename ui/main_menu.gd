@@ -8,14 +8,18 @@ func _ready() -> void:
 	
 	%Timer.start_timer()
 
+
 func _on_start_pressed() -> void:
 	get_tree().change_scene_to_file("res://instances/dunkaccino.tscn")
+	
 	
 func _on_options_pressed() -> void:
 	get_tree().change_scene_to_file("res://ui/Options.tscn")
 
+
 func _on_quit_pressed() -> void:
 	get_tree().quit()
+
 
 func _on_volume_sprite_frame_changed() -> void:
 	if !Aud.is_game_muted:

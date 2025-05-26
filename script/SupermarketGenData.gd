@@ -2,6 +2,14 @@ extends MazeGenData
 class_name SupermarketGenData
 
 
+var entrance_area: Rect2i
+var entrance_pos: Vector2i
+
+
+func generate_entrance_coord() -> void:
+	entrance_pos = Vector2i(1, rng.randi_range(2, maze_dim.y - 5))
+	entrance_area = Rect2i(entrance_pos + Vector2i(-1, -1), Vector2i(2, 6))
+
 
 static func from_maze_data(_data: MazeGenData) -> SupermarketGenData:
 	var new_data: SupermarketGenData = SupermarketGenData.new()
@@ -17,4 +25,7 @@ static func from_maze_data(_data: MazeGenData) -> SupermarketGenData:
 	new_data.list_corners = _data.list_corners
 	new_data.list_walls = _data.list_walls
 	new_data.list_maze = _data.list_maze
+	
+	new_data.generate_entrance_coord()
+	
 	return new_data

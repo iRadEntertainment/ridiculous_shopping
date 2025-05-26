@@ -24,39 +24,45 @@ const PRODUCTS = [
 @export_tool_button("DO IT!", "Button") var do_it: Callable = create_maze_3d
 @export var generate_roof: bool = true
 
+
 var maze_dim: Vector2i = Vector2i(41,41)
+var entrance_scene: SupermarketEntrance
 
 
+func _ready() -> void:
+	entrance_scene = preload("res://instances/entrance.tscn").instantiate()
+	entrance_scene.rotation.y = PI
 
 
 func create_maze_3d() -> void:
+	if entrance_scene.get_parent() == self:
+		remove_child(entrance_scene)
 	
 	var maze_data:  = MazeGen.generate_maze(
 		maze_dim,
-		[
-			"JustCovino",
-			"Seano4D",
-			"HypnoticK_Games",
-			"FoolBox",
-			"code807",
-			"konradgryt",
-			"mrdboy_",
-			"ScaryPastry",
-			"iheartfunnyboys",
-			"mudbound_dragon",
-			"Vex667",
-			"bluefoxstudios432",
-			"SirAeron",
-			"robmblind",
-			"gingerc4t",
-			"Nekoht20"
-		].pick_random()
+		Mng.SEEDS.pick_random()
 	)
 	var supermarket_data: SupermarketGenData = SupermarketGenData.from_maze_data(maze_data)
 	%GridMap.clear()
+	var is_entrance_placed: bool = false
 	for x: int in maze_dim.x:
 		for y: int in maze_dim.y:
 			var p: Vector2i = Vector2i(x,y)
+			if supermarket_data.entrance_area.has_point(p):
+				if is_entrance_placed:
+					continue
+				
+				var entr_pos2: Vector2 = supermarket_data.entrance_pos
+				var entr_pos3: Vector3 = Vector3(entr_pos2.x, 0, entr_pos2.y)
+				entr_pos3 *= 5.0
+				entr_pos3 += Vector3(2.5, 0, 2.5)
+				entrance_scene.position = entr_pos3
+				add_child(entrance_scene)
+				if Engine.is_editor_hint():
+					entrance_scene.owner = self
+				is_entrance_placed = true
+				continue
+			
 			var pos_ground: Vector3i = Vector3i(p.x, 0, p.y)
 			var pos_roof: Vector3i = Vector3i(p.x, 1, p.y)
 			

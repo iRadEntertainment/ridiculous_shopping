@@ -2,7 +2,7 @@ extends CharacterBody3D
 class_name BeanPlayer
 
 const SPEED = 5.0
-const JUMP_VELOCITY = 24.5
+const JUMP_VELOCITY = 9.5
 const SPRINT_MULTIPLIER = 0.75
 
 
@@ -50,7 +50,7 @@ func attach_trolley(toggle: bool) -> void:
 	#%hinge_joint.set_deferred(&"node_b", trolley_path if toggle else "")
 	%left_pin.set_deferred(&"node_b", trolley_path if toggle else "")
 	%right_pin.set_deferred(&"node_b", trolley_path if toggle else "")
-	#%center_pin.set_deferred(&"node_b", trolley_path if toggle else "")
+	%center_pin.set_deferred(&"node_b", trolley_path if toggle else "")
 	print("trolley is %sattached" % ["" if is_attached_to_trolley else "NOT "])
 
 
