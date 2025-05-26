@@ -1,6 +1,8 @@
 extends Node3D
 class_name SupermarketEntrance
 
+@onready var bean_spawn: Marker3D = %bean_spawn
+
 
 signal player_entered
 signal player_exited
@@ -34,5 +36,5 @@ func move_trolley_to_start_pos(trolley: Trolley) -> void:
 
 func _on_area_3d_start_body_entered(_body: Node3D) -> void:
 	player_entered.emit()
-func _on_area_3d_exit_body_entered(body: Node3D) -> void:
+func _on_area_3d_exit_body_entered(_body: Node3D) -> void:
 	player_exited.emit()

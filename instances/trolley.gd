@@ -21,24 +21,20 @@ func _on_area_3d_trigger_body_entered(body: Node3D) -> void:
 	if body is Item:
 		if !items_collected.has(body):
 			items_collected.append(body)
-func _on_area_3d_trigger_body_exited(body: Node3D) -> void:
-	if body is Item:
+func _on_area_3d_trigger_body_exited(body: RigidBody3D) -> void:
+	if body is Item and not body.freeze:
 		if items_collected.has(body):
 			items_collected.erase(body)
 
 
-
 func check_item_in_cart() -> void:
-	print("Before: ", items_collected)
+	#print("Before: ", items_collected)
 	for item: Item in items_collected:
 		if item.freeze:
 			continue
-		#if !%Area3D_trigger.overlaps_body(item):
-			#items_collected.erase(item)
-			#continue
 		item.reparent(self)
 		item.set_deferred("freeze", true)
-	print("After: ", items_collected)
+	#print("After: ", items_collected)
 	count_items()
 	count_updated.emit()
 

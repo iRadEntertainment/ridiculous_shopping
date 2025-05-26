@@ -153,7 +153,7 @@ albedo_color = Color(0.721198, 0.631231, 3.85046e-07, 1)
 
 [sub_resource type="TextMesh" id="TextMesh_furmh"]
 material = SubResource("StandardMaterial3D_1b3dg")
-text = "robmblind"
+text = "SirAeron"
 font_size = 64
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cdso0"]
@@ -177,7 +177,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.71382, 0, -23.0128)
 shape = SubResource("ConcavePolygonShape3D_bh8mf")
 
 [node name="CashRegister" parent="." instance=ExtResource("6_1b3dg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.75, 0, -15)
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.333501, 0.0481038, -15.0093)
+
+[node name="CashRegister3" parent="." instance=ExtResource("6_1b3dg")]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -4.26801, 0.0481038, -15.0093)
+
+[node name="CashRegister2" parent="." instance=ExtResource("6_1b3dg")]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 3.64061, 0.0481038, -15.0093)
 
 [node name="main_door" parent="." instance=ExtResource("6_7yqjr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.90022, 0, 0.0125004)
@@ -226,6 +232,10 @@ mesh = SubResource("TextMesh_furmh")
 unique_name_in_owner = true
 transform = Transform3D(7.64274e-15, 4, -1.74846e-07, 1.74846e-07, -1.74846e-07, -4, -4, 0, -1.74846e-07, 8.02967, 7.45775, -15.05)
 mesh = SubResource("PlaneMesh_gpefh")
+
+[node name="bean_spawn" type="Marker3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.6593, 7.37727, 0)
 
 [connection signal="body_entered" from="Area3D_start" to="." method="_on_area_3d_start_body_entered"]
 [connection signal="body_entered" from="Area3D_exit" to="." method="_on_area_3d_exit_body_entered"]

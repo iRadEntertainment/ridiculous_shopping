@@ -11,11 +11,12 @@ var trolley: Trolley:
 	get():
 		return Mng.trolley
 var is_attached_to_trolley: bool = false
-var tw_trolley: Tween
+var tw_move_bean: Tween
 
 var can_input: bool = true
 
 signal item_dropped
+
 
 func _ready() -> void:
 	Mng.bean = self
@@ -33,33 +34,35 @@ func _process(delta: float) -> void:
 		%coll_climb_steps.rotation.y = %mesh.rotation.y - PI/2
 
 
+func move_to_marker(node: Marker3D) -> void:
+	if tw_move_bean:
+			tw_move_bean.kill()
+	tw_move_bean = create_tween()
+	self.set_deferred(&"freeze", true)
+	#target_tranform = target_tranform.scaled(%mesh.scale)
+	tw_move_bean.set_ease(Tween.EASE_OUT)
+	tw_move_bean.set_trans(Tween.TRANS_SPRING)
+	tw_move_bean.tween_property(
+		self,
+		^"global_position",
+		node.global_position,
+		0.5
+	)
+	tw_move_bean.set_parallel().tween_property(
+		%mesh,
+		"global_rotation:y",
+		node.global_rotation.y + PI/2,
+		0.5
+	)
+	await tw_move_bean.finished
+	self.set_deferred(&"freeze", false)
+
+
 func attach_trolley(toggle: bool) -> void:
 	if !can_input:
 		return
 	if toggle:
-		if tw_trolley:
-			tw_trolley.kill()
-		tw_trolley = create_tween()
-		self.set_deferred(&"freeze", true)
-		#target_tranform = target_tranform.scaled(%mesh.scale)
-		tw_trolley.set_ease(Tween.EASE_OUT)
-		tw_trolley.set_trans(Tween.TRANS_SPRING)
-		tw_trolley.tween_property(
-			self,
-			^"global_position",
-			Mng.trolley.marker_3d.global_position,
-			0.5
-		)
-		tw_trolley.set_parallel().tween_property(
-			%mesh,
-			"global_rotation:y",
-			Mng.trolley.marker_3d.global_rotation.y + PI/2,
-			0.5
-		)
-		
-		
-		await tw_trolley.finished
-		self.set_deferred(&"freeze", false)
+		await move_to_marker(Mng.trolley.marker_3d)
 		Mng.trolley.check_item_in_cart()
 	
 	is_attached_to_trolley = !is_attached_to_trolley
@@ -76,8 +79,8 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta
 	
 	# don't move while taking the cart
-	if tw_trolley:
-		if tw_trolley.is_running():
+	if tw_move_bean:
+		if tw_move_bean.is_running():
 			return
 	
 	# Handle jump.
@@ -119,6 +122,9 @@ func _input(event: InputEvent) -> void:
 
 
 func _unhandled_input(event):
+	%SprintParticles.emitting = Input.is_action_pressed(&"sprint") \
+								and velocity.length() > 0.0 \
+								and is_on_floor_only()
 	if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
 		return
 	if !can_input:
@@ -127,4 +133,3 @@ func _unhandled_input(event):
 		rotate_y(-event.relative.x*0.001)
 		%mesh.rotate_y(event.relative.x*0.001)
 	
-	%SprintParticles.emitting = Input.is_action_pressed(&"sprint") and velocity.length() > 0.0 and is_on_floor_only()

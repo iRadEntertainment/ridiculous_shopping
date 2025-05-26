@@ -7,8 +7,8 @@ var entrance_pos: Vector2i
 
 
 func generate_entrance_coord() -> void:
-	entrance_pos = Vector2i(1, rng.randi_range(2, maze_dim.y - 5))
-	entrance_area = Rect2i(entrance_pos + Vector2i(-1, -1), Vector2i(2, 6))
+	entrance_pos = Vector2i(1, rng.randi_range(2, maze_dim.y - 7))
+	entrance_area = Rect2i(entrance_pos + Vector2i(-1, -1), Vector2i(4, 6))
 
 
 static func from_maze_data(_data: MazeGenData) -> SupermarketGenData:

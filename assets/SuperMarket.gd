@@ -23,10 +23,11 @@ const PRODUCTS = [
 
 
 @export var is_intro: bool = false
-@export_tool_button("DO IT!", "Button") var do_it: Callable = create_maze_3d
+@export_tool_button("DO IT!", "Button") var do_it: Callable = create_all
 @export var generate_roof: bool = true
 
 
+var supermarket_data: SupermarketGenData
 var maze_dim: Vector2i = Vector2i(41,41)
 var entrance_scene: SupermarketEntrance
 
@@ -36,15 +37,26 @@ func _ready() -> void:
 	entrance_scene.rotation.y = PI
 
 
-func create_maze_3d() -> void:
-	if entrance_scene.get_parent() == self:
-		remove_child(entrance_scene)
-	
+func create_all(seed: String = "") -> void:
+	create_data(seed)
+	create_maze_3d()
+	entrance_scene.change_title(supermarket_data.maze_seed)
+	entrance_scene.move_trolley_to_start_pos(Mng.trolley)
+
+
+func create_data(seed: String = "") -> void:
 	var maze_data:  = MazeGen.generate_maze(
 		maze_dim,
-		Mng.SEEDS.pick_random()
+		seed if !seed.is_empty() else Mng.SEEDS.pick_random()
 	)
-	var supermarket_data: SupermarketGenData = SupermarketGenData.from_maze_data(maze_data)
+	supermarket_data = SupermarketGenData.from_maze_data(maze_data)
+
+
+func create_maze_3d() -> void:
+	var old_entrance: SupermarketEntrance = find_child(&"entrance")
+	if old_entrance:
+		remove_child(old_entrance)
+	
 	%GridMap.clear()
 	var is_entrance_placed: bool = false
 	for x: int in maze_dim.x:
@@ -70,7 +82,7 @@ func create_maze_3d() -> void:
 			
 			
 			# supermarket walls
-			var is_border: bool = maze_data.btm_boundaries.get_bitv(p)
+			var is_border: bool = supermarket_data.btm_boundaries.get_bitv(p)
 			if is_border:
 				var is_corner: bool = (p.x in [0, maze_dim.x-1]) and (p.y in [0, maze_dim.y-1])
 				var wall_angle: float = 0.0
@@ -85,25 +97,25 @@ func create_maze_3d() -> void:
 				)
 			
 			# supermarket roof
-			if generate_roof:
+			if generate_roof or !Engine.is_editor_hint():
 				%GridMap.set_cell_item(
 					pos_roof,
 					Tiles.ROOF_OPEN if (p.y+1) % 2 == 0 else Tiles.ROOF_CLOSED,
 				)
 			
 			# supermarket ground floor
-			if maze_data.btm_maze.get_bitv(p):
+			if supermarket_data.btm_maze.get_bitv(p):
 				# free tiles
 				%GridMap.set_cell_item(pos_ground, 0)
 				continue
-			elif maze_data.btm_boundaries.get_bitv(p):
+			elif supermarket_data.btm_boundaries.get_bitv(p):
 				# supermarket walls
 				continue
 			else:
 				# supermarket shelves
 				%GridMap.set_cell_item(
 					pos_ground,
-					PRODUCTS[maze_data.rng.randi() % PRODUCTS.size()],
+					PRODUCTS[supermarket_data.rng.randi() % PRODUCTS.size()],
 					#1 if maze_data.rng.randf() > 0.5 else 2,
 					get_random_orient_idx(supermarket_data.rng)
 				)

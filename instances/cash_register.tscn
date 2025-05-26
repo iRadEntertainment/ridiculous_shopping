@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://b43bu8pcv4ycs"]
+[gd_scene load_steps=14 format=4 uid="uid://b43bu8pcv4ycs"]
 
 [ext_resource type="Script" uid="uid://bilgnau4a5rju" path="res://instances/cash_register.gd" id="1_88crx"]
 
@@ -164,6 +164,13 @@ size = Vector3(1.78757, 0.589478, 1.0083)
 [sub_resource type="BoxShape3D" id="BoxShape3D_02vfe"]
 size = Vector3(0.661621, 1, 1.59094)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_88crx"]
+emission_enabled = true
+emission = Color(0, 0.519825, 0.335189, 1)
+emission_energy_multiplier = 4.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_02vfe"]
+
 [node name="CashRegister" type="MeshInstance3D"]
 mesh = SubResource("ArrayMesh_k84ow")
 skeleton = NodePath("")
@@ -186,5 +193,11 @@ collision_mask = 32
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.169189, 0, -1.00958)
 shape = SubResource("BoxShape3D_02vfe")
+
+[node name="cash_reg_light" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(0.0742271, 0, 0, 0, 0.104369, 0, 0, 0, 0.174661, 0.800896, 1.22703, -0.308398)
+material_override = SubResource("StandardMaterial3D_88crx")
+mesh = SubResource("BoxMesh_02vfe")
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

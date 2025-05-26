@@ -15,6 +15,7 @@ func _process(delta: float) -> void:
 
 
 func format_time(seconds: float) -> String:
+	@warning_ignore("integer_division")
 	var mins: int = int(seconds) / 60
 	var secs: int = int(seconds) % 60
 	var millis: int = int((seconds - int(seconds)) * 1000)

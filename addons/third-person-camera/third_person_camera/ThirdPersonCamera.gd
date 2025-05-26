@@ -243,6 +243,7 @@ func _update_camera_properties() :
 
 
 func _check_raycast_interactibles() -> void:
+	Mng.gui.set_reticle_interact(%pick_ray.is_colliding())
 	if !%pick_ray.is_colliding():
 		is_aiming_trolley = false
 		if last_item:
@@ -283,12 +284,11 @@ func get_right_direction() :
 
 func pick_item(val: bool) -> void:
 	is_pick_item = val
-	if !last_item:
-		return
 	
 	if not val:
 		%pin.node_b = ""
-		last_item.can_sleep = true
+		if last_item:
+			last_item.can_sleep = true
 		return
 	
 	%pin.global_transform = last_item.global_transform

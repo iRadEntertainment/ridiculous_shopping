@@ -17,11 +17,6 @@ var is_hovered := false:
 		is_hovered = val
 		highlight(is_hovered)
 
-signal just_hovered(interactible: Interactible, body: PhysicsBody3D)
-signal just_left_clicked(interactible: Interactible, body: PhysicsBody3D)
-signal just_right_clicked(interactible: Interactible, body: PhysicsBody3D)
-
-
 
 func _ready() -> void:
 	# Guard statements
@@ -35,7 +30,7 @@ func _ready() -> void:
 	mesh_instance = find_first_mesh_in_node_3D(parent)
 	
 	# load and apply next pass material for the highlight
-	next_pass_material = preload("res://assets/meshes/outline_next_pass.tres").duplicate()
+	next_pass_material = preload("res://assets/meshes/outline_next_pass.tres").duplicate(true)
 	mesh_instance.mesh.surface_get_material(0).next_pass = next_pass_material
 	next_pass_material.set_shader_parameter("outline_color", Color.TRANSPARENT)
 
