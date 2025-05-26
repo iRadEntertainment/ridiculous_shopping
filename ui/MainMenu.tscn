@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cfg8d47fx7d5h"]
+[gd_scene load_steps=6 format=3 uid="uid://cfg8d47fx7d5h"]
 
 [ext_resource type="Script" uid="uid://cl2s3sdopbphf" path="res://ui/main_menu.gd" id="1_b00nv"]
 [ext_resource type="Theme" uid="uid://dfjqab3g6ptab" path="res://ui/dunkaccino.theme" id="1_nmrkx"]
 [ext_resource type="Texture2D" uid="uid://cqot4w10l8nja" path="res://assets/wip/volume-Sheet.png" id="2_rn8js"]
 [ext_resource type="RichTextEffect" uid="uid://bocmvyi17khos" path="res://ui/text_effects/Jiggle.tres" id="3_8v85u"]
+[ext_resource type="PackedScene" uid="uid://d2regmawgl07k" path="res://ui/timer/Timer.tscn" id="5_x262b"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -102,9 +103,8 @@ position = Vector2(1078, 68)
 texture = ExtResource("2_rn8js")
 hframes = 4
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" parent="." instance=ExtResource("5_x262b")]
 unique_name_in_owner = true
-autostart = true
 
 [connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="VBoxContainer/Options" to="." method="_on_options_pressed"]

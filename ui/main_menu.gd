@@ -5,6 +5,8 @@ func _ready() -> void:
 	self.process_mode = Node.PROCESS_MODE_ALWAYS
 	Aud.play_main_theme_music()
 	%VolumeSprite.frame += 1
+	
+	%Timer.start_timer()
 
 func _on_start_pressed() -> void:
 	get_tree().change_scene_to_file("res://instances/dunkaccino.tscn")
