@@ -56,3 +56,14 @@ top_level = true
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0.570638)
 visible = false
 mesh = SubResource("CylinderMesh_ybkhn")
+
+[node name="pick_ray" type="RayCast3D" parent="Camera"]
+unique_name_in_owner = true
+target_position = Vector3(0, 0, -15)
+collision_mask = 36
+
+[node name="dummy" type="StaticBody3D" parent="Camera"]
+
+[node name="pin" type="PinJoint3D" parent="Camera/dummy"]
+unique_name_in_owner = true
+node_a = NodePath("..")

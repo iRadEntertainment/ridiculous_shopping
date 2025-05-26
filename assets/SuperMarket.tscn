@@ -893,7 +893,6 @@ metadata/_editor_source_scene = "res://assets/supermarket_items.tscn"
 
 [node name="SuperMarket" type="Node3D"]
 script = ExtResource("1_867ve")
-is_intro = null
 
 [node name="main_floor" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 102.5, -0.26, 102.5)

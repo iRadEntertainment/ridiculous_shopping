@@ -26,7 +26,7 @@ enabled=PackedStringArray("res://addons/road-generator/plugin.cfg", "res://addon
 
 [gui]
 
-theme/custom_font="uid://dfayypvomp2fv"
+theme/custom_font="uid://dc5thwknt6j5n"
 
 [input]
 
@@ -84,6 +84,7 @@ mute={
 3d_physics/layer_3="Interactibles"
 3d_physics/layer_4="Triggers"
 3d_physics/layer_5="NPCs"
+3d_physics/layer_6="Trolley"
 
 [physics]
 

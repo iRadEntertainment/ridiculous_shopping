@@ -2,6 +2,7 @@ extends Node3D
 class_name GameScene
 
 @export var is_main_menu_background: bool = false
+@onready var items: Node3D = %items
 
 var time_elapsed: float = 0.0
 
@@ -11,31 +12,32 @@ signal challenge_started
 signal challenge_ended
 
 
+var shopping_list = {
+	Item.Type.ANANAS: 3,
+	Item.Type.BANANA: 3,
+	Item.Type.DONUT: 1,
+}
+
+
 func _ready() -> void:
-	if is_main_menu_background:
-		Mng.gui.toggle_timer(false)
-		return
-	
-	Mng.game = self
-	Mng.trolley = find_child("trolley")
-	Mng.bean = find_child("bean")
-	Mng.bean.can_input = !is_main_menu_background
 	setup_scene()
-	if is_main_menu_background:
-		Mng.bean.intro_scene_animation()
-	else:
-		Mng.toggle_mouse_capture(true)
-		connect_signals()
 
 
 func setup_scene() -> void:
-	Mng.gui.toggle_timer(false)
-	Mng.entrance.move_trolley_to_start_pos(Mng.trolley)
-	Mng.entrance.lock_entrance(false)
-	Mng.entrance.lock_exit(true)
+	Mng.bean.can_input = !is_main_menu_background
+	Mng.toggle_mouse_capture(!is_main_menu_background)
+	Mng.gui.set_is_main_menu_background(is_main_menu_background)
+	if !is_main_menu_background:
+		Mng.game = self
+		Mng.entrance.move_trolley_to_start_pos(Mng.trolley)
+		Mng.entrance.lock_entrance(false)
+		Mng.entrance.lock_exit(true)
+	connect_signals()
 
 
 func connect_signals() -> void:
+	if is_main_menu_background:
+		return
 	Mng.entrance.player_entered.connect(start_challenge)
 	Mng.entrance.player_exited.connect(end_challenge)
 

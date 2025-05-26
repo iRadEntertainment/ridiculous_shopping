@@ -15,6 +15,7 @@ var tw_trolley: Tween
 
 var can_input: bool = true
 
+signal item_dropped
 
 func _ready() -> void:
 	Mng.bean = self
@@ -39,28 +40,34 @@ func attach_trolley(toggle: bool) -> void:
 		if tw_trolley:
 			tw_trolley.kill()
 		tw_trolley = create_tween()
-		trolley.set_deferred(&"freeze", true)
-		var target_tranform: Transform3D = %trolley_marker.global_transform
+		self.set_deferred(&"freeze", true)
 		#target_tranform = target_tranform.scaled(%mesh.scale)
 		tw_trolley.set_ease(Tween.EASE_OUT)
 		tw_trolley.set_trans(Tween.TRANS_SPRING)
 		tw_trolley.tween_property(
-			trolley,
-			^"global_transform",
-			target_tranform,
+			self,
+			^"global_position",
+			Mng.trolley.marker_3d.global_position,
+			0.5
+		)
+		tw_trolley.set_parallel().tween_property(
+			%mesh,
+			"global_rotation:y",
+			Mng.trolley.marker_3d.global_rotation.y + PI/2,
 			0.5
 		)
 		
+		
 		await tw_trolley.finished
-		trolley.set_deferred(&"freeze", false)
+		self.set_deferred(&"freeze", false)
+		Mng.trolley.check_item_in_cart()
 	
 	is_attached_to_trolley = !is_attached_to_trolley
 	var trolley_path: String = %left_pin.get_path_to(trolley)
-	#%hinge_joint.set_deferred(&"node_b", trolley_path if toggle else "")
-	%left_pin.set_deferred(&"node_b", trolley_path if toggle else "")
-	%right_pin.set_deferred(&"node_b", trolley_path if toggle else "")
+	%hinge_joint.set_deferred(&"node_b", trolley_path if toggle else "")
+	#%left_pin.set_deferred(&"node_b", trolley_path if toggle else "")
+	#%right_pin.set_deferred(&"node_b", trolley_path if toggle else "")
 	%center_pin.set_deferred(&"node_b", trolley_path if toggle else "")
-	print("trolley is %sattached" % ["" if is_attached_to_trolley else "NOT "])
 
 
 func _physics_process(delta: float) -> void:
@@ -97,7 +104,18 @@ func _physics_process(delta: float) -> void:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed(&"interact"):
-		attach_trolley(!is_attached_to_trolley)
+		if is_attached_to_trolley:
+			attach_trolley(false)
+		elif Mng.cam.is_pick_item:
+			Mng.cam.pick_item(false)
+			item_dropped.emit()
+		elif Mng.cam.is_aiming_trolley:
+			attach_trolley(true)
+		elif Mng.cam.last_item:
+			Mng.cam.pick_item(true)
+		
+			
+	#attach_trolley(!is_attached_to_trolley)
 
 
 func _unhandled_input(event):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://b43bu8pcv4ycs"]
+[gd_scene load_steps=12 format=4 uid="uid://b43bu8pcv4ycs"]
 
 [ext_resource type="Script" uid="uid://bilgnau4a5rju" path="res://instances/cash_register.gd" id="1_88crx"]
 
@@ -161,6 +161,9 @@ size = Vector3(3.95105, 0.809814, 1.0083)
 [sub_resource type="BoxShape3D" id="BoxShape3D_88crx"]
 size = Vector3(1.78757, 0.589478, 1.0083)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_02vfe"]
+size = Vector3(0.661621, 1, 1.59094)
+
 [node name="CashRegister" type="MeshInstance3D"]
 mesh = SubResource("ArrayMesh_k84ow")
 skeleton = NodePath("")
@@ -175,3 +178,13 @@ shape = SubResource("BoxShape3D_3n4xs")
 [node name="coll2" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.06313, 0.344788, 1.05806)
 shape = SubResource("BoxShape3D_88crx")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 8
+collision_mask = 32
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.169189, 0, -1.00958)
+shape = SubResource("BoxShape3D_02vfe")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

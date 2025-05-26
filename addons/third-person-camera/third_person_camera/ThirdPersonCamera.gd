@@ -7,6 +7,10 @@ enum FOLLOW_TARGETS {
 	PARENT = 2,
 }
 
+var last_item: Item
+signal last_item_changed
+var is_pick_item: bool = false
+var is_aiming_trolley: bool = false
 
 @onready var _camera := $Camera
 @onready var _camera_rotation_pivot = $RotationPivot
@@ -101,6 +105,12 @@ var distance_sprint_multiplier: float = 1.0
 var camera_tilt_deg := 0.
 var camera_horizontal_rotation_deg := 0.
 
+
+func _ready() -> void:
+	Mng.cam = self
+	_camera.top_level = true
+
+
 func _set_when_ready(node_path : NodePath, property_name : StringName, value : Variant) :
 	if not is_node_ready() :
 		await ready
@@ -119,9 +129,6 @@ func _validate_property(property: Dictionary) -> void:
 			pass
 		
 
-func _ready():
-	_camera.top_level = true
-
 
 func _process(delta: float) -> void:
 	var target_fov: float = 75.0 if not (Input.is_action_pressed(&"sprint")) else 120.0
@@ -132,7 +139,7 @@ func _process(delta: float) -> void:
 
 
 func _physics_process(_delta):
-
+	_check_raycast_interactibles()
 	_update_camera_properties()
 	if Engine.is_editor_hint() :
 		_camera_marker.global_position = Vector3(0., 0., 1.).rotated(Vector3(1., 0., 0.), deg_to_rad(initial_dive_angle_deg)).rotated(Vector3(0., 1., 0.), self.global_rotation.y) * _camera_spring_arm.spring_length + _camera_spring_arm.global_position
@@ -235,7 +242,26 @@ func _update_camera_properties() :
 		_camera.attributes = attributes
 
 
-func get_camera() :
+func _check_raycast_interactibles() -> void:
+	if !%pick_ray.is_colliding():
+		is_aiming_trolley = false
+		if last_item:
+			last_item.highlight(false)
+			last_item = null
+		return
+	
+	var obj = %pick_ray.get_collider()
+	is_aiming_trolley = obj is Trolley
+	
+	if last_item != obj and last_item:
+		last_item.highlight(false)
+	if obj is Item:
+		last_item = obj
+		obj.highlight(true)
+	
+
+
+func get_camera():
 	return $Camera
 
 
@@ -253,3 +279,19 @@ func get_left_direction() :
 
 func get_right_direction() :
 	return get_front_direction().rotated(Vector3.UP, -PI/2)
+
+
+func pick_item(val: bool) -> void:
+	is_pick_item = val
+	if !last_item:
+		return
+	
+	if not val:
+		%pin.node_b = ""
+		last_item.can_sleep = true
+		return
+	
+	%pin.global_transform = last_item.global_transform
+	%pin.node_b = %pin.get_path_to(last_item)
+	last_item.can_sleep = false
+	

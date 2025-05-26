@@ -11,6 +11,11 @@ func _ready() -> void:
 	lock_exit(false)
 
 
+func change_title(text: String) -> void:
+	var tmesh: TextMesh = %mesh_title.mesh
+	tmesh.text = text
+
+
 func lock_entrance(val: bool) -> void:
 	$start_door.lock_door(val)
 	%coll_start.disabled = val

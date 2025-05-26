@@ -27,6 +27,7 @@ var bean: BeanPlayer
 var trolley: Trolley
 var entrance: SupermarketEntrance
 var gui: GUI
+var cam: ThirdPersonCamera
 
 var is_debug: bool = true
 
