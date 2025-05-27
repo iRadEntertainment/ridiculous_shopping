@@ -42,22 +42,28 @@ func create_all(seed: String = "") -> void:
 	create_data(seed)
 	create_maze_3d()
 	entrance_scene.change_title(supermarket_data.maze_seed)
-	entrance_scene.move_trolley_to_start_pos(Mng.trolley)
+	if !Engine.is_editor_hint():
+		entrance_scene.move_trolley_to_start_pos(Mng.trolley)
 
 
-func create_data(seed: String = "") -> void:
+func create_data(_seed: String = "") -> void:
+	_seed = _seed if !_seed.is_empty() else Mng.SEEDS.pick_random()
 	var maze_data:  = MazeGen.generate_maze(
 		maze_dim,
-		seed if !seed.is_empty() else Mng.SEEDS.pick_random()
+		_seed
 	)
 	supermarket_data = SupermarketGenData.from_maze_data(maze_data)
+	if !Engine.is_editor_hint():
+		Mng.game.supermarket_seed = _seed
 
 
 func create_maze_3d() -> void:
 	var old_entrance: SupermarketEntrance = find_child(&"entrance")
 	if old_entrance:
 		remove_child(old_entrance)
-	
+	if not entrance_scene:
+		entrance_scene = preload("res://instances/entrance.tscn").instantiate()
+		entrance_scene.rotation.y = PI
 	%GridMap.clear()
 	var is_entrance_placed: bool = false
 	for x: int in maze_dim.x:

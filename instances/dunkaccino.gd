@@ -15,31 +15,34 @@ signal challenge_ended
 
 
 var shopping_list = {
-	Item.Type.ANANAS: 2,
-	Item.Type.BANANA: 3,
-	Item.Type.WATERMELON: 1,
-	Item.Type.DONUT: 3,
-	#Item.Type.FROZEN_PIZZA: 1,
-	#Item.Type.FROZEN_FISH: 1,
-	#Item.Type.FROZEN_PEAS: 1,
+	#Item.Type.ANANAS: 2,
+	#Item.Type.BANANA: 3,
+	#Item.Type.WATERMELON: 1,
+	#Item.Type.DONUT: 3,
 }
+
+var supermarket_seed: String
 
 
 func _ready() -> void:
-	setup_scene()
+	if is_main_menu_background:
+		setup_scene()
 
 
-func setup_scene() -> void:
+func setup_scene(_seed: String = "") -> void:
+	supermarket_seed = _seed
 	Mng.bean.can_input = !is_main_menu_background
 	Mng.toggle_mouse_capture(!is_main_menu_background)
 	Mng.gui.set_is_main_menu_background(is_main_menu_background)
 	Mng.gui.toggle_shopping_list(false)
-	if !is_main_menu_background:
-		Mng.game = self
+	if is_main_menu_background:
+		%CamMenu.current = true
+		%cam_anim.play(&"main_menu_cam")
+	else:
+		super_market.create_all(supermarket_seed)
 		Mng.entrance.move_trolley_to_start_pos(Mng.trolley)
 		Mng.entrance.lock_entrance(false)
 		Mng.entrance.lock_exit(true)
-		super_market.create_all()
 		var rng := super_market.supermarket_data.rng
 		var rand_item = [
 			Item.Type.FROZEN_PIZZA,
@@ -50,7 +53,7 @@ func setup_scene() -> void:
 		await get_tree().process_frame
 		Mng.bean.move_to_marker(Mng.entrance.bean_spawn)
 		Mng.gui.animate_wave_label("Get to the %s Super Market!" % super_market.supermarket_data.maze_seed)
-	connect_signals()
+		connect_signals()
 
 
 func connect_signals() -> void:
@@ -68,7 +71,8 @@ func start_challenge() -> void:
 
 
 func end_challenge() -> void:
-	Mng.gui.timer.stop_timer()
+	challenge_ended.emit()
+	Mng.gui.open_win_screen()
 
 
 func _input(event: InputEvent) -> void:

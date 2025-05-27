@@ -53,6 +53,12 @@ func toggle_timer(val: bool) -> void:
 		timer.start_timer()
 
 
+func open_win_screen() -> void:
+	%lb_time_elapsed.text = timer.format_time(timer.time_passed)
+	%lb_supermarket_name.text = "[jiggle]%s[/jiggle]" % [Mng.super_market.supermarket_data.maze_seed]
+	%win_screen.show()
+
+
 func set_reticle_interact(val: bool) -> void:
 	%reticle.texture = preload("res://ui/icon_crossair.png") if not val else preload("res://ui/icon_interact.png")
 
@@ -118,3 +124,9 @@ func _on_last_item_changed() -> void:
 	var icon_empty: Texture2D = preload("res://ui/icon_crossair.png")
 	var icon_interact: Texture2D = preload("res://ui/icon_interact.png")
 	%reticle.texture = icon_empty if not Mng.cam.last_item else icon_interact
+
+
+func _on_btn_main_menu_pressed() -> void:
+	Mng.go_to_main_menu()
+func _on_btn_retry_pressed() -> void:
+	Mng.go_to_game_scene(Mng.game.supermarket_seed)

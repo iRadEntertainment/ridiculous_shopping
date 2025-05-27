@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cfg8d47fx7d5h"]
+[gd_scene load_steps=9 format=3 uid="uid://cfg8d47fx7d5h"]
 
 [ext_resource type="Script" uid="uid://cl2s3sdopbphf" path="res://ui/main_menu.gd" id="1_b00nv"]
 [ext_resource type="Theme" uid="uid://dfjqab3g6ptab" path="res://ui/dunkaccino.theme" id="1_nmrkx"]
@@ -7,6 +7,13 @@
 [ext_resource type="PackedScene" uid="uid://dp6ugdjmkshto" path="res://instances/dunkaccino.tscn" id="3_qo3sn"]
 [ext_resource type="Texture2D" uid="uid://bi4r3wtm3jhnw" path="res://assets/game_logo.png" id="4_qo3sn"]
 [ext_resource type="PackedScene" uid="uid://c80joei511sl3" path="res://ui/Options.tscn" id="5_g5fyd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g5fyd"]
+content_margin_left = 32.0
+content_margin_top = 32.0
+content_margin_right = 32.0
+content_margin_bottom = 32.0
+bg_color = Color(0.107959, 0.603642, 0.664369, 0.670588)
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -40,8 +47,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -61.0
-offset_bottom = -209.0
+offset_top = -117.0
+offset_bottom = -265.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -51,6 +58,21 @@ layout_mode = 2
 texture = ExtResource("4_qo3sn")
 expand_mode = 1
 stretch_mode = 5
+
+[node name="btn_easter_egg" type="Button" parent="cnt/logo"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -169.0
+offset_top = -56.0
+offset_right = 169.0
+offset_bottom = 56.0
+grow_horizontal = 2
+grow_vertical = 2
+flat = true
 
 [node name="panels" type="Control" parent="."]
 layout_mode = 1
@@ -63,12 +85,14 @@ grow_vertical = 2
 
 [node name="Options" parent="panels" instance=ExtResource("5_g5fyd")]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 offset_top = 0.0
 offset_bottom = 0.0
 
 [node name="menu_buttons" type="VBoxContainer" parent="panels"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -80,11 +104,11 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="btn_Start" type="Button" parent="panels/menu_buttons"]
+[node name="btn_open_select" type="Button" parent="panels/menu_buttons"]
 layout_mode = 2
 text = " "
 
-[node name="StartLabel" type="RichTextLabel" parent="panels/menu_buttons/btn_Start"]
+[node name="StartLabel" type="RichTextLabel" parent="panels/menu_buttons/btn_open_select"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -146,6 +170,79 @@ horizontal_alignment = 1
 vertical_alignment = 1
 custom_effects = [ExtResource("3_8v85u")]
 
+[node name="pnl_select_seed" type="PanelContainer" parent="panels"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_g5fyd")
+
+[node name="vb" type="VBoxContainer" parent="panels/pnl_select_seed"]
+layout_mode = 2
+
+[node name="hb" type="HBoxContainer" parent="panels/pnl_select_seed/vb"]
+layout_mode = 2
+
+[node name="ln_supermarket_name" type="LineEdit" parent="panels/pnl_select_seed/vb/hb"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 48
+placeholder_text = "name your supermarket or leave it empty for a surprise!"
+
+[node name="btn_shuffle" type="Button" parent="panels/pnl_select_seed/vb/hb"]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+text = " "
+
+[node name="lb" type="RichTextLabel" parent="panels/pnl_select_seed/vb/hb/btn_shuffle"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_font_sizes/normal_font_size = 68
+bbcode_enabled = true
+text = "[jiggle]Shuffle[/jiggle]"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+custom_effects = [ExtResource("3_8v85u")]
+
+[node name="btn_Start" type="Button" parent="panels/pnl_select_seed/vb"]
+layout_mode = 2
+size_flags_vertical = 3
+text = " "
+
+[node name="lb" type="RichTextLabel" parent="panels/pnl_select_seed/vb/btn_Start"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_font_sizes/normal_font_size = 68
+bbcode_enabled = true
+text = "[jiggle]Go Shopping[/jiggle]"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+custom_effects = [ExtResource("3_8v85u")]
+
+[node name="Label" type="Label" parent="panels/pnl_select_seed/vb"]
+layout_mode = 2
+text = "Select a supermarket from the shuffle list or name yours!
+It will be generated according to it's name"
+horizontal_alignment = 1
+
 [node name="VolumeSprite" type="Sprite2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(1078, 68)
@@ -164,6 +261,8 @@ offset_bottom = -11.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
 text = "[jiggle]M[/jiggle]"
 fit_content = true
@@ -172,7 +271,10 @@ horizontal_alignment = 1
 vertical_alignment = 1
 custom_effects = [ExtResource("3_8v85u")]
 
-[connection signal="pressed" from="panels/menu_buttons/btn_Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="cnt/logo/btn_easter_egg" to="." method="_on_btn_easter_egg_pressed"]
+[connection signal="pressed" from="panels/menu_buttons/btn_open_select" to="." method="_on_btn_open_select_pressed"]
 [connection signal="pressed" from="panels/menu_buttons/btn_Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="panels/menu_buttons/btn_Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="panels/pnl_select_seed/vb/hb/btn_shuffle" to="." method="_on_btn_shuffle_pressed"]
+[connection signal="pressed" from="panels/pnl_select_seed/vb/btn_Start" to="." method="_on_start_pressed"]
 [connection signal="frame_changed" from="VolumeSprite" to="." method="_on_volume_sprite_frame_changed"]

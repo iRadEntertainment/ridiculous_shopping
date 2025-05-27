@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dpgiq60p2biss"]
+[gd_scene load_steps=13 format=3 uid="uid://dpgiq60p2biss"]
 
 [ext_resource type="Script" uid="uid://fwlqlx5iahiy" path="res://instances/gui.gd" id="1_hqbb6"]
 [ext_resource type="PackedScene" uid="uid://d2regmawgl07k" path="res://ui/timer/Timer.tscn" id="2_55t7c"]
@@ -25,6 +25,13 @@ gradient = SubResource("Gradient_jhi8b")
 content_margin_top = 8.0
 content_margin_bottom = 8.0
 texture = SubResource("GradientTexture1D_o1sif")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_33pdm"]
+content_margin_left = 24.0
+content_margin_top = 24.0
+content_margin_right = 24.0
+content_margin_bottom = 24.0
+bg_color = Color(0.956863, 0.792157, 0.364706, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bxrto"]
 bg_color = Color(0.870588, 0.0431373, 0.105882, 1)
@@ -66,7 +73,6 @@ texture = ExtResource("4_jy3c7")
 
 [node name="shopping_list" type="RichTextLabel" parent="HUD"]
 unique_name_in_owner = true
-modulate = Color(1, 1, 1, 0.721569)
 custom_minimum_size = Vector2(240, 300)
 layout_mode = 1
 anchors_preset = -1
@@ -107,8 +113,155 @@ text = "Fetch the groceries!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="win_screen" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 121.0
+offset_top = 61.0
+offset_right = -121.0
+offset_bottom = -61.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_33pdm")
+
+[node name="vb" type="VBoxContainer" parent="win_screen"]
+layout_mode = 2
+
+[node name="lb_win_message" type="RichTextLabel" parent="win_screen/vb"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/normal_font_size = 68
+bbcode_enabled = true
+text = "[jiggle]Congratulation[/jiggle]"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+custom_effects = [ExtResource("6_bxrto")]
+
+[node name="hb" type="GridContainer" parent="win_screen/vb"]
+layout_mode = 2
+size_flags_vertical = 0
+columns = 2
+
+[node name="lb1" type="Label" parent="win_screen/vb/hb"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 42
+text = "TIme elapsed"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="lb_time_elapsed" type="RichTextLabel" parent="win_screen/vb/hb"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/normal_font_size = 42
+bbcode_enabled = true
+text = "2:22:256"
+horizontal_alignment = 1
+vertical_alignment = 1
+custom_effects = [ExtResource("6_bxrto")]
+
+[node name="lb2" type="Label" parent="win_screen/vb/hb"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 42
+text = "Completed Supermarket"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="lb_supermarket_name" type="RichTextLabel" parent="win_screen/vb/hb"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/normal_font_size = 42
+bbcode_enabled = true
+text = "JustCovino"
+horizontal_alignment = 1
+vertical_alignment = 1
+custom_effects = [ExtResource("6_bxrto")]
+
+[node name="lb" type="RichTextLabel" parent="win_screen/vb"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 1
+theme_override_colors/default_color = Color(0.870588, 0.0431373, 0.105882, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
+text = "[jiggle]Do you want to try again?[/jiggle]"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+custom_effects = [ExtResource("6_bxrto")]
+
+[node name="hb2" type="HBoxContainer" parent="win_screen/vb"]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="btn_retry" type="Button" parent="win_screen/vb/hb2"]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = " "
+
+[node name="lb" type="RichTextLabel" parent="win_screen/vb/hb2/btn_retry"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_font_sizes/normal_font_size = 68
+bbcode_enabled = true
+text = "[jiggle]Retry[/jiggle]"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+custom_effects = [ExtResource("6_bxrto")]
+
+[node name="btn_main_menu" type="Button" parent="win_screen/vb/hb2"]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = " "
+
+[node name="lb" type="RichTextLabel" parent="win_screen/vb/hb2/btn_main_menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_font_sizes/normal_font_size = 68
+bbcode_enabled = true
+text = "[jiggle]Main Menu[/jiggle]"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+custom_effects = [ExtResource("6_bxrto")]
+
 [node name="in_game_menu" type="Control" parent="."]
 unique_name_in_owner = true
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -178,11 +331,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 custom_effects = [ExtResource("6_bxrto")]
 
-[node name="win_screen" type="Control" parent="."]
-unique_name_in_owner = true
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[connection signal="pressed" from="win_screen/vb/hb2/btn_retry" to="." method="_on_btn_retry_pressed"]
+[connection signal="pressed" from="win_screen/vb/hb2/btn_main_menu" to="." method="_on_btn_main_menu_pressed"]
+[connection signal="pressed" from="in_game_menu/pnl/vb/btn_main_menu" to="." method="_on_btn_main_menu_pressed"]
