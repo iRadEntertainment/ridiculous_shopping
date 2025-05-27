@@ -120,10 +120,11 @@ func _input(event: InputEvent) -> void:
 			Mng.cam.item_spawner.spawn()
 
 
-func _unhandled_input(event):
-	%SprintParticles.emitting = Input.is_action_pressed(&"sprint") \
-								and velocity.length() > 0.0 \
-								and is_on_floor_only()
+func _unhandled_input(event) -> void:
+	if !Mng.is_web_build:
+		%SprintParticles.emitting = Input.is_action_pressed(&"sprint") \
+									and velocity.length() > 0.0 \
+									and is_on_floor_only()
 	if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
 		return
 	if !can_input:
@@ -131,4 +132,3 @@ func _unhandled_input(event):
 	if event is InputEventMouseMotion:
 		rotate_y(-event.relative.x*0.001)
 		%mesh.rotate_y(event.relative.x*0.001)
-	

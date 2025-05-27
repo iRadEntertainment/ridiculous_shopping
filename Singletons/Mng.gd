@@ -40,6 +40,7 @@ var gui: GUI
 var cam: ThirdPersonCamera
 
 var is_debug: bool = false
+var is_web_build: bool = true
 
 var is_mouse_captured: bool:
 	get():
