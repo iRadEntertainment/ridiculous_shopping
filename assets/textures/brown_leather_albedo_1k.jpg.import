@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://cucutspurq5ty"
 path.s3tc="res://.godot/imported/brown_leather_albedo_1k.jpg-1a6172aa35da9b0e34a85beff53dca7f.s3tc.ctex"
+path.etc2="res://.godot/imported/brown_leather_albedo_1k.jpg-1a6172aa35da9b0e34a85beff53dca7f.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/brown_leather_albedo_1k.jpg"
-dest_files=["res://.godot/imported/brown_leather_albedo_1k.jpg-1a6172aa35da9b0e34a85beff53dca7f.s3tc.ctex"]
+dest_files=["res://.godot/imported/brown_leather_albedo_1k.jpg-1a6172aa35da9b0e34a85beff53dca7f.s3tc.ctex", "res://.godot/imported/brown_leather_albedo_1k.jpg-1a6172aa35da9b0e34a85beff53dca7f.etc2.ctex"]
 
 [params]
 

@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://b72awkstpkch4"
 path.s3tc="res://.godot/imported/bean_BeanTex_AlbedoTransparency.png-8a012ef48d670b1f85d023e21b73f95f.s3tc.ctex"
+path.etc2="res://.godot/imported/bean_BeanTex_AlbedoTransparency.png-8a012ef48d670b1f85d023e21b73f95f.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/textures/bean_BeanTex_AlbedoTransparency.png"
-dest_files=["res://.godot/imported/bean_BeanTex_AlbedoTransparency.png-8a012ef48d670b1f85d023e21b73f95f.s3tc.ctex"]
+dest_files=["res://.godot/imported/bean_BeanTex_AlbedoTransparency.png-8a012ef48d670b1f85d023e21b73f95f.s3tc.ctex", "res://.godot/imported/bean_BeanTex_AlbedoTransparency.png-8a012ef48d670b1f85d023e21b73f95f.etc2.ctex"]
 
 [params]
 

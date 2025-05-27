@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://dft38fg6bcpi4"
 path.s3tc="res://.godot/imported/brick_crosswalk_diff_1k.jpg-8af97de9b591fa07b5e2543824b7d53c.s3tc.ctex"
+path.etc2="res://.godot/imported/brick_crosswalk_diff_1k.jpg-8af97de9b591fa07b5e2543824b7d53c.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/brick_crosswalk_diff_1k.jpg"
-dest_files=["res://.godot/imported/brick_crosswalk_diff_1k.jpg-8af97de9b591fa07b5e2543824b7d53c.s3tc.ctex"]
+dest_files=["res://.godot/imported/brick_crosswalk_diff_1k.jpg-8af97de9b591fa07b5e2543824b7d53c.s3tc.ctex", "res://.godot/imported/brick_crosswalk_diff_1k.jpg-8af97de9b591fa07b5e2543824b7d53c.etc2.ctex"]
 
 [params]
 

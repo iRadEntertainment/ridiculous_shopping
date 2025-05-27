@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://uci0i2bah87w"
 path.s3tc="res://.godot/imported/brick_wall_04_diff_1k.jpg-d939a4687f036e75ba1c04c94add63cf.s3tc.ctex"
+path.etc2="res://.godot/imported/brick_wall_04_diff_1k.jpg-d939a4687f036e75ba1c04c94add63cf.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/brick_wall_04_diff_1k.jpg"
-dest_files=["res://.godot/imported/brick_wall_04_diff_1k.jpg-d939a4687f036e75ba1c04c94add63cf.s3tc.ctex"]
+dest_files=["res://.godot/imported/brick_wall_04_diff_1k.jpg-d939a4687f036e75ba1c04c94add63cf.s3tc.ctex", "res://.godot/imported/brick_wall_04_diff_1k.jpg-d939a4687f036e75ba1c04c94add63cf.etc2.ctex"]
 
 [params]
 

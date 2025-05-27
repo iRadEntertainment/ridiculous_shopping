@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://csymvuabsbdm"
 path.s3tc="res://.godot/imported/flag_pic.png-5e6f95858095fa766f983dde5a293438.s3tc.ctex"
+path.etc2="res://.godot/imported/flag_pic.png-5e6f95858095fa766f983dde5a293438.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/textures/flag_pic.png"
-dest_files=["res://.godot/imported/flag_pic.png-5e6f95858095fa766f983dde5a293438.s3tc.ctex"]
+dest_files=["res://.godot/imported/flag_pic.png-5e6f95858095fa766f983dde5a293438.s3tc.ctex", "res://.godot/imported/flag_pic.png-5e6f95858095fa766f983dde5a293438.etc2.ctex"]
 
 [params]
 

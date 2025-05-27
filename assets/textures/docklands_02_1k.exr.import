@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://6obkg6oc3xgf"
 path.bptc="res://.godot/imported/docklands_02_1k.exr-15fc061978284f8076d2517a6646b808.bptc.ctex"
+path.astc="res://.godot/imported/docklands_02_1k.exr-15fc061978284f8076d2517a6646b808.astc.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/docklands_02_1k.exr"
-dest_files=["res://.godot/imported/docklands_02_1k.exr-15fc061978284f8076d2517a6646b808.bptc.ctex"]
+dest_files=["res://.godot/imported/docklands_02_1k.exr-15fc061978284f8076d2517a6646b808.bptc.ctex", "res://.godot/imported/docklands_02_1k.exr-15fc061978284f8076d2517a6646b808.astc.ctex"]
 
 [params]
 

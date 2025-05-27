@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://djrd6wl6pd08k"
 path.s3tc="res://.godot/imported/supermarket_models_propic.png-3d409b60f1f919dd01878f56106cb109.s3tc.ctex"
+path.etc2="res://.godot/imported/supermarket_models_propic.png-3d409b60f1f919dd01878f56106cb109.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://supermarket_models_propic.png"
-dest_files=["res://.godot/imported/supermarket_models_propic.png-3d409b60f1f919dd01878f56106cb109.s3tc.ctex"]
+dest_files=["res://.godot/imported/supermarket_models_propic.png-3d409b60f1f919dd01878f56106cb109.s3tc.ctex", "res://.godot/imported/supermarket_models_propic.png-3d409b60f1f919dd01878f56106cb109.etc2.ctex"]
 
 [params]
 

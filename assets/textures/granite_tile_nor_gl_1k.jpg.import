@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bfbocwaqvpr38"
 path.s3tc="res://.godot/imported/granite_tile_nor_gl_1k.jpg-3ad2c85844cd7ebda71af8f52f56b64f.s3tc.ctex"
+path.etc2="res://.godot/imported/granite_tile_nor_gl_1k.jpg-3ad2c85844cd7ebda71af8f52f56b64f.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/granite_tile_nor_gl_1k.jpg"
-dest_files=["res://.godot/imported/granite_tile_nor_gl_1k.jpg-3ad2c85844cd7ebda71af8f52f56b64f.s3tc.ctex"]
+dest_files=["res://.godot/imported/granite_tile_nor_gl_1k.jpg-3ad2c85844cd7ebda71af8f52f56b64f.s3tc.ctex", "res://.godot/imported/granite_tile_nor_gl_1k.jpg-3ad2c85844cd7ebda71af8f52f56b64f.etc2.ctex"]
 
 [params]
 

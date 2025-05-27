@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bi4r3wtm3jhnw"
 path.s3tc="res://.godot/imported/game_logo.png-4c00206f969a34fb07f120fc53f4f241.s3tc.ctex"
+path.etc2="res://.godot/imported/game_logo.png-4c00206f969a34fb07f120fc53f4f241.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/game_logo.png"
-dest_files=["res://.godot/imported/game_logo.png-4c00206f969a34fb07f120fc53f4f241.s3tc.ctex"]
+dest_files=["res://.godot/imported/game_logo.png-4c00206f969a34fb07f120fc53f4f241.s3tc.ctex", "res://.godot/imported/game_logo.png-4c00206f969a34fb07f120fc53f4f241.etc2.ctex"]
 
 [params]
 
