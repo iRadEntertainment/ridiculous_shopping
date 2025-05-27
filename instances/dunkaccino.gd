@@ -15,10 +15,10 @@ signal challenge_ended
 
 
 var shopping_list = {
-	#Item.Type.ANANAS: 2,
-	#Item.Type.BANANA: 3,
-	#Item.Type.WATERMELON: 1,
-	#Item.Type.DONUT: 3,
+	Item.Type.ANANAS: 2,
+	Item.Type.BANANA: 3,
+	Item.Type.WATERMELON: 1,
+	Item.Type.DONUT: 3,
 }
 
 var supermarket_seed: String
